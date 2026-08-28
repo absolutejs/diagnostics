@@ -7,15 +7,28 @@ describe("browser diagnostics", () => {
   afterAll(() => GlobalRegistrator.unregister());
 
   test("is explicitly started, bounded, and redacts before retaining bodies", async () => {
+    window.location.href = "https://app.example.test/";
     const originalFetch = window.fetch;
-    window.fetch = (async () =>
-      new Response(
+    const observed: { propagatedDiagnosticId: string | null } = {
+      propagatedDiagnosticId: null,
+    };
+    window.fetch = (async (_input: RequestInfo | URL, init?: RequestInit) => {
+      observed.propagatedDiagnosticId = new Headers(init?.headers).get(
+        "x-absolutejs-diagnostic-id",
+      );
+      return new Response(
         JSON.stringify({ paymentToken: "response-wallet-secret", ok: true }),
         {
-          headers: { "content-type": "application/json" },
+          headers: {
+            "content-type": "application/json",
+            "server-timing": "db;dur=12.5",
+            traceparent:
+              "00-0af7651916cd43dd8448eb211c80319c-b7ad6b7169203331-01",
+          },
           status: 200,
         },
-      )) as unknown as typeof window.fetch;
+      );
+    }) as unknown as typeof window.fetch;
     const underlyingFetch = window.fetch;
     const diagnostics = createBrowserDiagnostics({
       bodyCapture: {
@@ -26,11 +39,12 @@ describe("browser diagnostics", () => {
       maxConsoleEntries: 2,
       maxNetworkEntries: 2,
       project: "test",
+      propagateDiagnosticId: true,
     });
     expect(diagnostics.active()).toBeUndefined();
 
     const session = diagnostics.start({ reason: "test reproduction" });
-    await window.fetch("/checkout?token=url-secret", {
+    await window.fetch(`${location.origin}/checkout?token=url-secret`, {
       body: JSON.stringify({ password: "request-secret", safe: true }),
       headers: {
         authorization: "Bearer header-secret",
@@ -43,6 +57,7 @@ describe("browser diagnostics", () => {
     expect(window.fetch).toBe(underlyingFetch);
     expect(archive.manifest.completeness).toBe("in-page-partial");
     expect(archive.manifest.reason).toBe("test reproduction");
+    expect(observed.propagatedDiagnosticId).toBe(session.id);
     expect(archive.network.some((entry) => entry.initiator === "fetch")).toBe(
       true,
     );
@@ -51,6 +66,15 @@ describe("browser diagnostics", () => {
     expect(serialized).not.toContain("request-secret");
     expect(serialized).not.toContain("response-wallet-secret");
     expect(serialized).not.toContain("header-secret");
+    const fetchEntry = archive.network.find(
+      (entry) => entry.initiator === "fetch",
+    );
+    expect(fetchEntry?.response?.serverTiming).toEqual([
+      { duration: 12.5, name: "db" },
+    ]);
+    expect(fetchEntry?.response?.trace?.traceId).toBe(
+      "0af7651916cd43dd8448eb211c80319c",
+    );
     expect(session.serializeHar()).toContain('"version":"1.2"');
 
     window.fetch = originalFetch;

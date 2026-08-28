@@ -24,6 +24,21 @@ export type DiagnosticResponse = {
   status: number;
   statusText?: string;
   transferSize?: number;
+  serverTiming?: DiagnosticServerTiming[];
+  trace?: DiagnosticTraceContext;
+};
+
+export type DiagnosticServerTiming = {
+  description?: string;
+  duration?: number;
+  name: string;
+};
+
+export type DiagnosticTraceContext = {
+  flags: string;
+  parentId: string;
+  traceId: string;
+  version: string;
 };
 
 export type DiagnosticNetworkEntry = {
@@ -37,6 +52,7 @@ export type DiagnosticNetworkEntry = {
   request: DiagnosticRequest;
   response?: DiagnosticResponse;
   startedAt: number;
+  trace?: DiagnosticTraceContext;
 };
 
 export type DiagnosticConsoleEntry = {
@@ -110,4 +126,42 @@ export type DiagnosticBodyCapturePolicy = {
   maxBodyBytes?: number;
   request?: boolean;
   response?: boolean;
+};
+
+export const SUPPORT_BUNDLE_VERSION = 1 as const;
+
+export type SupportMarker = {
+  at: number;
+  data?: Record<string, boolean | number | string>;
+  label: string;
+};
+
+export type SupportCorrelations = {
+  diagnosticId: string;
+  issueFingerprints?: string[];
+  replayId?: string;
+  traceIds?: string[];
+};
+
+export type SupportBundleManifest = {
+  endedAt: number;
+  environment?: string;
+  expiresAt?: number;
+  id: string;
+  project: string;
+  reason?: string;
+  redacted: true;
+  release?: string;
+  startedAt: number;
+};
+
+export type SupportBundle = {
+  archive: DiagnosticArchive;
+  audit: DiagnosticAuditResult;
+  context?: Record<string, unknown>;
+  correlations: SupportCorrelations;
+  har: string;
+  manifest: SupportBundleManifest;
+  markers: SupportMarker[];
+  version: typeof SUPPORT_BUNDLE_VERSION;
 };

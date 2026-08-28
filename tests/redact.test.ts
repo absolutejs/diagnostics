@@ -100,6 +100,19 @@ describe("diagnostic redaction", () => {
     expect(result.findings[0]?.code).toBe("authorization-value");
   });
 
+  test("audits header order and HAR cookie arrays structurally", () => {
+    const result = auditDiagnosticText(
+      JSON.stringify({
+        cookies: [{ name: "session", value: "raw-cookie" }],
+        headers: [{ value: "Bearer still-secret", name: "authorization" }],
+      }),
+    );
+    expect(result.safeToShare).toBe(false);
+    expect(
+      [...new Set(result.findings.map((finding) => finding.code))].sort(),
+    ).toEqual(["authorization-value", "cookie-value"]);
+  });
+
   test("redacts valid payment card numbers but permits epoch timestamps", () => {
     const text = JSON.stringify({
       cardNumber: "4111111111111111",

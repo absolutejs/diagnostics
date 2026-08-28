@@ -10,6 +10,7 @@ import {
   redactHarText,
   redactText,
   redactUrl,
+  redactValue,
   type HarRedactionOptions,
 } from "./redact";
 
@@ -190,9 +191,16 @@ export const launchPlaywrightHarCapture = async (
         const endedAtUtc = new Date().toISOString();
         const raw = await readFile(rawPath, "utf8");
         const redacted = redactHarText(raw, options.harRedaction);
-        if (!redacted.audit.safeToShare) {
+        const consoleText = `${consoleEntries
+          .map(
+            (entry) =>
+              `[${new Date(entry.at).toISOString()}] console.${entry.level}: ${entry.message}`,
+          )
+          .join("\n")}\n`;
+        const audit = auditDiagnosticText(`${redacted.text}\n${consoleText}`);
+        if (!audit.safeToShare) {
           throw new Error(
-            `HAR redaction audit failed: ${redacted.audit.findings
+            `Diagnostic redaction audit failed: ${audit.findings
               .map((finding) => finding.code)
               .join(", ")}`,
           );
@@ -200,15 +208,7 @@ export const launchPlaywrightHarCapture = async (
         await writeFile(options.outputPath, `${redacted.text}\n`);
         if (options.consoleOutputPath !== undefined) {
           await mkdir(dirname(options.consoleOutputPath), { recursive: true });
-          await writeFile(
-            options.consoleOutputPath,
-            `${consoleEntries
-              .map(
-                (entry) =>
-                  `[${new Date(entry.at).toISOString()}] console.${entry.level}: ${entry.message}`,
-              )
-              .join("\n")}\n`,
-          );
+          await writeFile(options.consoleOutputPath, consoleText);
         }
         if (options.metadataOutputPath !== undefined) {
           await mkdir(dirname(options.metadataOutputPath), { recursive: true });
@@ -230,7 +230,7 @@ export const launchPlaywrightHarCapture = async (
           );
         }
         return {
-          audit: redacted.audit,
+          audit,
           console: consoleEntries,
           endedAtUtc,
           markers,
@@ -249,7 +249,14 @@ export const launchPlaywrightHarCapture = async (
     mark: (label, data) =>
       markers.push({
         atUtc: new Date().toISOString(),
-        ...(data === undefined ? {} : { data }),
+        ...(data === undefined
+          ? {}
+          : {
+              data: redactValue(data) as Record<
+                string,
+                boolean | number | string
+              >,
+            }),
         label: redactText(label),
       }),
     page,

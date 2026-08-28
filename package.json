@@ -1,7 +1,7 @@
 {
   "name": "@absolutejs/diagnostics",
-  "version": "0.1.0",
-  "description": "Privacy-first, on-demand browser diagnostics for AbsoluteJS: bounded network and console sessions, redacted HAR 1.2 export, Playwright/CDP capture, and an optional Elysia relay.",
+  "version": "0.2.0",
+  "description": "Privacy-first AbsoluteJS Support Mode: bounded browser diagnostics, redacted HAR capture, correlated support bundles, secure lifecycle storage, native UI, and operator tooling.",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/absolutejs/diagnostics.git"
@@ -42,6 +42,31 @@
       "import": "./dist/playwright.js",
       "default": "./dist/playwright.js"
     },
+    "./blob": {
+      "types": "./dist/blob.d.ts",
+      "import": "./dist/blob.js",
+      "default": "./dist/blob.js"
+    },
+    "./support": {
+      "types": "./dist/support.d.ts",
+      "import": "./dist/support.js",
+      "default": "./dist/support.js"
+    },
+    "./trace": {
+      "types": "./dist/trace.d.ts",
+      "import": "./dist/trace.js",
+      "default": "./dist/trace.js"
+    },
+    "./ui": {
+      "types": "./dist/ui.d.ts",
+      "import": "./dist/ui.js",
+      "default": "./dist/ui.js"
+    },
+    "./viewer": {
+      "types": "./dist/viewer.d.ts",
+      "import": "./dist/viewer.js",
+      "default": "./dist/viewer.js"
+    },
     "./elysia": {
       "types": "./dist/elysia.d.ts",
       "import": "./dist/elysia.js",
@@ -63,7 +88,7 @@
     "LICENSE"
   ],
   "scripts": {
-    "build": "rm -rf dist && bun build src/index.ts src/browser.ts src/har.ts src/redact.ts --outdir dist --root ./src --splitting --sourcemap --target=browser && bun build src/playwright.ts src/elysia.ts src/manifest.ts --outdir dist --root ./src --splitting --sourcemap --target=bun --external playwright --external elysia --external @absolutejs/manifest --external '@absolutejs/manifest/*' --external @sinclair/typebox --external '@sinclair/typebox/*' && tsc --project tsconfig.build.json && absolute-manifest emit",
+    "build": "rm -rf dist && bun build src/index.ts src/browser.ts src/har.ts src/redact.ts src/support.ts src/trace.ts src/ui.ts src/viewer.ts --outdir dist --root ./src --splitting --sourcemap --target=browser && bun build src/playwright.ts src/elysia.ts src/blob.ts src/manifest.ts --outdir dist --root ./src --splitting --sourcemap --target=bun --external playwright --external elysia --external @absolutejs/manifest --external '@absolutejs/manifest/*' --external @sinclair/typebox --external '@sinclair/typebox/*' && tsc --project tsconfig.build.json && absolute-manifest emit",
     "test": "bun test",
     "typecheck": "tsc --noEmit",
     "format": "prettier --write \"./**/*.{ts,json,md}\"",

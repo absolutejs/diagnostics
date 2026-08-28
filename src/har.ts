@@ -149,7 +149,7 @@ export const diagnosticArchiveToHar = (
   return {
     log: {
       _absolutejs: archive.manifest,
-      creator: { name: "@absolutejs/diagnostics", version: "0.1.0" },
+      creator: { name: "@absolutejs/diagnostics", version: "0.2.0" },
       entries: archive.network.map(toEntry),
       pages: [
         {

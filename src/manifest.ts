@@ -54,6 +54,14 @@ export const manifest = defineManifest<BrowserDiagnosticsOptions>()({
         title: "Network entry limit",
       }),
     ),
+    propagateDiagnosticId: Type.Optional(
+      Type.Boolean({
+        default: false,
+        description:
+          "Add a PII-free diagnostic id to same-origin requests so server logs and traces can be joined to the support artifact.",
+        title: "Propagate diagnostic id",
+      }),
+    ),
     project: Type.String({
       default: "web",
       description: "Project identity included in the diagnostic manifest.",
@@ -81,6 +89,16 @@ export const manifest = defineManifest<BrowserDiagnosticsOptions>()({
           ],
           placement: "client-entry",
         },
+      },
+      server: {
+        code: ".use(diagnosticCorrelationPlugin())",
+        imports: [
+          {
+            from: "@absolutejs/diagnostics/elysia",
+            names: ["diagnosticCorrelationPlugin"],
+          },
+        ],
+        placement: "server-boundary",
       },
       title: "Install opt-in browser diagnostics",
     },

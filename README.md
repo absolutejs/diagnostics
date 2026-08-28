@@ -124,6 +124,70 @@ block. Call `stop()` rather than closing the browser window at the OS level.
 The metadata declares `completeness: "devtools-complete"`, whether cache was
 disabled, exact UTC start/end times, and any operator markers.
 
+## Support Mode controller and native UI
+
+`createSupportModeController` provides a consent-shaped state machine:
+`idle → recording → reviewing → sending → sent`. Creating it never starts a
+recording. A host can use the headless controller directly or connect the
+framework-neutral native element.
+
+```ts
+import { createBrowserDiagnostics } from "@absolutejs/diagnostics/browser";
+import {
+  connectSupportReportElements,
+  createSupportModeController,
+} from "@absolutejs/diagnostics/ui";
+
+const support = createSupportModeController({
+  diagnostics: createBrowserDiagnostics({ project: "web" }),
+  submit: async (bundle) => {
+    const response = await fetch("/api/diagnostics", {
+      body: JSON.stringify({ bundle }),
+      headers: { "content-type": "application/json" },
+      method: "POST",
+    });
+    if (!response.ok) throw new Error(`Upload failed: ${response.status}`);
+  },
+});
+
+connectSupportReportElements(support);
+```
+
+```html
+<absolute-support-report></absolute-support-report>
+```
+
+The element explains what will be recorded, requires an explicit Start click,
+shows a persistent recording state, supports named markers, and exposes the
+privacy-audit result before send.
+
+## Correlated support bundles
+
+`createSupportBundle()` produces one audited JSON artifact containing the
+redacted in-page archive and HAR plus marker, replay, release, environment,
+issue-fingerprint, and W3C trace correlations. It does not embed Replay data,
+server logs, or issue records; those remain in their purpose-built stores and
+are joined by id.
+
+Request-level trace correlation recognizes valid `traceparent` headers and
+records exposed `Server-Timing` metrics. Diagnostic-id propagation is
+same-origin, opt-in, and off by default because mutating requests can affect
+caches or signed requests.
+
+The optional Elysia correlation plugin makes the bounded correlation available
+to handlers and appends server timing:
+
+```ts
+import { diagnosticCorrelationPlugin } from "@absolutejs/diagnostics/elysia";
+
+app.use(
+  diagnosticCorrelationPlugin({
+    onRequest: ({ diagnosticId, trace }) =>
+      logs.info("support request", { diagnosticId, traceId: trace?.traceId }),
+  }),
+);
+```
+
 ## Redaction and audit
 
 ```ts
@@ -181,6 +245,45 @@ app.use(
 The relay enforces a byte limit, validates the archive shape, redacts again,
 audits the serialized HAR, and only then calls the store. Wire storage to
 `@absolutejs/blob` or another private store with an explicit retention policy.
+
+### Secure lifecycle storage
+
+`createDiagnosticBlobCaptureStore()` adapts any `@absolutejs/blob` store. The
+relay can enforce retention, atomic download limits, short-lived HMAC-signed
+download URLs, explicit deletion, and mandatory lifecycle audit hooks.
+
+```ts
+import { createDiagnosticBlobCaptureStore } from "@absolutejs/diagnostics/blob";
+
+const store = createDiagnosticBlobCaptureStore({
+  blob,
+  prefix: "support",
+  singleWriter: true, // only when one process owns this prefix
+});
+app.use(
+  diagnosticsPlugin({
+    authorize: requireSupportAccess,
+    downloadSigningKey: process.env.DIAGNOSTIC_SIGNING_KEY!,
+    maxDownloads: 1,
+    retentionMs: 7 * 24 * 60 * 60 * 1_000,
+    store,
+    onLifecycleEvent: (event) => audit.append(event),
+  }),
+);
+```
+
+`maxDownloads` is accepted only when the store implements atomic `consume()`;
+the plugin refuses unsafe configuration rather than pretending a normal `get()`
+is sufficient. The Blob adapter exposes serialized `consume()` only with
+`singleWriter: true`. Clustered applications must supply a transactional store
+implementation instead of relying on an object-store read/modify/write race.
+
+## Operator viewer and comparison
+
+`@absolutejs/diagnostics/viewer` builds a chronological network, console, and
+marker timeline. `compareSupportBundles(left, right)` reports request-set,
+status, failure-count, timing, console, and marker differences—useful for
+comparing a successful card attempt with a failed wallet attempt.
 
 ## Browser limitations
 

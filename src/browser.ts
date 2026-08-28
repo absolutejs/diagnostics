@@ -16,6 +16,7 @@ import {
   redactUrl,
   type RedactionOptions,
 } from "./redact";
+import { parseServerTiming, parseTraceparent } from "./trace";
 
 const DEFAULT_MAX_BYTES = 2_000_000;
 const DEFAULT_MAX_CONSOLE_ENTRIES = 500;
@@ -30,6 +31,9 @@ export type BrowserDiagnosticsOptions = {
   maxNetworkEntries?: number;
   preserveQueryValues?: string[];
   project: string;
+  /** Add the diagnostic id to same-origin requests. Off by default because
+   * request mutation can affect caches, signatures, and CORS behavior. */
+  propagateDiagnosticId?: boolean;
   release?: string;
   replayId?: () => string | undefined;
   traceId?: () => string | undefined;
@@ -210,8 +214,27 @@ export const createBrowserDiagnostics = (
         input: RequestInfo | URL,
         init?: RequestInit,
       ) => {
-        const descriptor = requestDescriptor(input, init);
+        let descriptor = requestDescriptor(input, init);
         if (ignoredUrl(descriptor.url)) return originalFetch(input, init);
+        let forwardedInit = init;
+        if (options.propagateDiagnosticId === true) {
+          try {
+            const parsed = new URL(descriptor.url, location.href);
+            if (parsed.origin === location.origin) {
+              const propagatedHeaders = new Headers(descriptor.headers);
+              if (!propagatedHeaders.has("x-absolutejs-diagnostic-id")) {
+                propagatedHeaders.set("x-absolutejs-diagnostic-id", id);
+              }
+              forwardedInit = { ...init, headers: propagatedHeaders };
+              descriptor = requestDescriptor(input, forwardedInit);
+            }
+          } catch {
+            // An invalid URL is left untouched and captured without correlation.
+          }
+        }
+        const requestTrace = parseTraceparent(
+          descriptor.headers.get("traceparent"),
+        );
         const entry: DiagnosticNetworkEntry = {
           id: randomId(),
           initiator: "fetch",
@@ -221,6 +244,7 @@ export const createBrowserDiagnostics = (
             url: redactUrl(descriptor.url, redaction),
           },
           startedAt: Date.now(),
+          ...(requestTrace === undefined ? {} : { trace: requestTrace }),
         };
         const requestBody = stringBody(init?.body);
         if (
@@ -238,12 +262,20 @@ export const createBrowserDiagnostics = (
         }
         addNetwork(entry);
         try {
-          const response = await originalFetch(input, init);
+          const response = await originalFetch(input, forwardedInit);
           entry.durationMs = Date.now() - entry.startedAt;
+          const serverTiming = parseServerTiming(
+            response.headers.get("server-timing"),
+          );
+          const responseTrace = parseTraceparent(
+            response.headers.get("traceparent"),
+          );
           entry.response = {
             headers: headerEntries(response.headers),
             status: response.status,
             statusText: response.statusText,
+            ...(serverTiming === undefined ? {} : { serverTiming }),
+            ...(responseTrace === undefined ? {} : { trace: responseTrace }),
           };
           if (
             options.bodyCapture?.response === true &&
@@ -321,6 +353,36 @@ export const createBrowserDiagnostics = (
         ) {
           const descriptor = metadata.get(this);
           if (descriptor !== undefined && !ignoredUrl(descriptor.url)) {
+            if (options.propagateDiagnosticId === true) {
+              try {
+                const parsed = new URL(descriptor.url, location.href);
+                if (
+                  parsed.origin === location.origin &&
+                  !descriptor.headers.some(
+                    (header) =>
+                      header.name.toLowerCase() ===
+                      "x-absolutejs-diagnostic-id",
+                  )
+                ) {
+                  originalSetRequestHeader.call(
+                    this,
+                    "x-absolutejs-diagnostic-id",
+                    id,
+                  );
+                  descriptor.headers.push({
+                    name: "x-absolutejs-diagnostic-id",
+                    value: id,
+                  });
+                }
+              } catch {
+                // An invalid URL is sent unchanged.
+              }
+            }
+            const requestTrace = parseTraceparent(
+              descriptor.headers.find(
+                (header) => header.name.toLowerCase() === "traceparent",
+              )?.value,
+            );
             const entry: DiagnosticNetworkEntry = {
               id: randomId(),
               initiator: "xhr",
@@ -330,6 +392,7 @@ export const createBrowserDiagnostics = (
                 url: redactUrl(descriptor.url, redaction),
               },
               startedAt: Date.now(),
+              ...(requestTrace === undefined ? {} : { trace: requestTrace }),
             };
             if (
               typeof body === "string" &&
@@ -358,12 +421,22 @@ export const createBrowserDiagnostics = (
                         ];
                   });
                 const safeHeaders = redactHeaders(parsedHeaders);
+                const serverTiming = parseServerTiming(
+                  this.getResponseHeader("server-timing"),
+                );
+                const responseTrace = parseTraceparent(
+                  this.getResponseHeader("traceparent"),
+                );
                 const response: DiagnosticResponse = {
                   ...(safeHeaders === undefined
                     ? {}
                     : { headers: safeHeaders }),
                   status: this.status,
                   statusText: this.statusText,
+                  ...(serverTiming === undefined ? {} : { serverTiming }),
+                  ...(responseTrace === undefined
+                    ? {}
+                    : { trace: responseTrace }),
                 };
                 entry.response = response;
                 if (
@@ -476,6 +549,19 @@ export const createBrowserDiagnostics = (
               },
               response: {
                 contentSize: resource.decodedBodySize,
+                ...(resource.serverTiming.length === 0
+                  ? {}
+                  : {
+                      serverTiming: resource.serverTiming.map((timing) => ({
+                        ...(timing.description === ""
+                          ? {}
+                          : { description: timing.description.slice(0, 512) }),
+                        ...(timing.duration < 0
+                          ? {}
+                          : { duration: timing.duration }),
+                        name: timing.name,
+                      })),
+                    }),
                 status: resource.responseStatus ?? 0,
                 transferSize: resource.transferSize,
               },

@@ -139,6 +139,10 @@ const redactUnknown = (
   return redacted;
 };
 
+/** Redact arbitrary support context before it is retained in an artifact. */
+export const redactValue = (value: unknown): unknown =>
+  redactUnknown(value, undefined, new Set(), 0);
+
 export const redactBody = (
   value: string,
   mimeType = "",
@@ -243,6 +247,16 @@ export const redactDiagnosticArchive = (
 
 export const auditDiagnosticText = (value: string): DiagnosticAuditResult => {
   const findings: DiagnosticAuditFinding[] = [];
+  const findingKeys = new Set<string>();
+  const addFinding = (
+    code: DiagnosticAuditFinding["code"],
+    location: string,
+  ): void => {
+    const key = `${code}:${location}`;
+    if (findingKeys.has(key)) return;
+    findingKeys.add(key);
+    findings.push({ code, location });
+  };
   const checks: Array<{
     code: DiagnosticAuditFinding["code"];
     pattern: RegExp;
@@ -251,6 +265,10 @@ export const auditDiagnosticText = (value: string): DiagnosticAuditResult => {
       code: "authorization-value",
       pattern:
         /"name"\s*:\s*"authorization"\s*,\s*"value"\s*:\s*"(?!\[REDACTED\])/iu,
+    },
+    {
+      code: "authorization-value",
+      pattern: BEARER,
     },
     {
       code: "cookie-value",
@@ -268,22 +286,84 @@ export const auditDiagnosticText = (value: string): DiagnosticAuditResult => {
       pattern:
         /"(?:clientSecret|cvv|password|paymentData|paymentToken|refreshToken|sessionId|signature|tokenizationKey)"\s*:\s*"(?!\[REDACTED\])/iu,
     },
+    {
+      code: "sensitive-field",
+      pattern:
+        /\b(?:access_?token|api_?key|client_?secret|password|payment_?token|refresh_?token|secret|session|signature|tokenization_?key)\s*[:=]\s*(?!(?:\[REDACTED\]|%5BREDACTED%5D))[^,;\s]+/iu,
+    },
   ];
   for (const check of checks) {
     check.pattern.lastIndex = 0;
     if (check.pattern.test(value)) {
-      findings.push({ code: check.code, location: "serialized-export" });
+      addFinding(check.code, "serialized-export");
     }
   }
   PAYMENT_CARD_CANDIDATE.lastIndex = 0;
   for (const match of value.matchAll(PAYMENT_CARD_CANDIDATE)) {
     if (validPaymentCard(match[0])) {
-      findings.push({
-        code: "payment-card-number",
-        location: "serialized-export",
-      });
+      addFinding("payment-card-number", "serialized-export");
       break;
     }
+  }
+  try {
+    const parsed: unknown = JSON.parse(value);
+    const visit = (item: unknown, path: string, inCookies = false): void => {
+      if (typeof item === "string") {
+        BEARER.lastIndex = 0;
+        if (BEARER.test(item)) addFinding("authorization-value", path);
+        JWT.lastIndex = 0;
+        if (JWT.test(item)) addFinding("jwt", path);
+        PAYMENT_CARD_CANDIDATE.lastIndex = 0;
+        for (const match of item.matchAll(PAYMENT_CARD_CANDIDATE)) {
+          if (validPaymentCard(match[0])) {
+            addFinding("payment-card-number", path);
+            break;
+          }
+        }
+        return;
+      }
+      if (item === null || typeof item !== "object") return;
+      if (Array.isArray(item)) {
+        item.forEach((child, index) =>
+          visit(child, `${path}[${index}]`, inCookies),
+        );
+        return;
+      }
+      const record = item as Record<string, unknown>;
+      const headerName =
+        typeof record.name === "string" ? record.name.toLowerCase() : undefined;
+      if (
+        headerName !== undefined &&
+        SENSITIVE_HEADER.test(headerName) &&
+        record.value !== REDACTED
+      ) {
+        addFinding(
+          headerName.includes("cookie")
+            ? "cookie-value"
+            : "authorization-value",
+          path,
+        );
+      }
+      if (inCookies && "value" in record && record.value !== REDACTED) {
+        addFinding("cookie-value", path);
+      }
+      for (const [key, child] of Object.entries(record)) {
+        const childPath = `${path}.${key}`;
+        if (
+          key !== "name" &&
+          key !== "value" &&
+          key !== "cookies" &&
+          SENSITIVE_FIELD.test(key) &&
+          child !== REDACTED
+        ) {
+          addFinding("sensitive-field", childPath);
+        }
+        visit(child, childPath, inCookies || key === "cookies");
+      }
+    };
+    visit(parsed, "$", false);
+  } catch {
+    // Non-JSON console exports still receive the text-pattern audit above.
   }
   return { findings, safeToShare: findings.length === 0 };
 };
