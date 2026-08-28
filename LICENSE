@@ -1,0 +1,71 @@
+# Business Source License 1.1
+
+**Licensor:** Alex Kahn
+
+**Licensed Work:** @absolutejs/diagnostics (https://github.com/absolutejs/diagnostics)
+
+**Change Date:** August 28, 2030
+
+**Change License:** Apache License, Version 2.0
+
+---
+
+## Terms
+
+The Licensor hereby grants you the right to copy, modify, create derivative
+works, redistribute, and make non-production use of the Licensed Work. The
+Licensor may make an Additional Use Grant, permitting limited production use.
+
+### Additional Use Grant
+
+You may use the Licensed Work in production, provided your use does not include
+any of the following:
+
+1. **Offering a Competing Service.** You may not offer the Licensed Work, or
+   any derivative or substantial portion of it, to third parties as a hosted or
+   managed browser-diagnostics, error-tracking, session-replay, real-user
+   monitoring, or support-capture service that competes with hosted
+   observability offerings. This includes any product whose primary value to
+   its users is capturing or exporting end-user browser sessions or network
+   diagnostics.
+
+2. **Resale or Redistribution as a Standalone Product.** You may not sell,
+   license, or distribute the Licensed Work, or any derivative or fork of it,
+   as a standalone commercial product.
+
+3. **Removal of Attribution.** Any derivative work, fork, or redistribution of
+   the Licensed Work must prominently credit AbsoluteJS and include a link to
+   the original project repository (https://github.com/absolutejs/diagnostics).
+
+For clarity, the following uses are expressly permitted:
+
+- Using the Licensed Work to diagnose your own applications, websites,
+  internal tools, or SaaS products.
+- Using the Licensed Work as a dependency in commercial software, provided
+  that diagnostics is not the primary product being sold.
+- Providing consulting, development, or support services using the Licensed
+  Work.
+- Forking and modifying the Licensed Work for internal use, with attribution.
+
+### Change Date and Change License
+
+On the Change Date, the Licensed Work will be made available under the Apache
+License, Version 2.0.
+
+### Trademark
+
+This license does not grant rights to use the AbsoluteJS name or trademarks.
+
+### No Warranty
+
+THE LICENSED WORK IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND. IN NO
+EVENT SHALL THE LICENSOR BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER LIABILITY
+ARISING FROM THE USE OF THE LICENSED WORK.
+
+---
+
+## Contact
+
+- **Alex Kahn**
+- alexkahndev@gmail.com
+- alexkahndev.github.io
