@@ -17,8 +17,17 @@ const SENSITIVE_QUERY =
 const JWT = /\beyJ[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+\b/gu;
 const BEARER = /\b(Bearer)\s+[A-Za-z0-9._~+/-]+=*/giu;
 const PAYMENT_CARD_CANDIDATE = /\b(?:\d[ -]*?){13,19}\b/gu;
+// A run that begins immediately after `<digit>.` is the fractional part of a
+// decimal number, not a card. Floating-point timings and coordinates routinely
+// serialize 15+ digits of representation noise, and roughly one in ten of those
+// passes Luhn — without this the audit rejects ordinary captures.
+const DECIMAL_FRACTION_BEFORE = /\d\.$/u;
 
-const validPaymentCard = (value: string): boolean => {
+const precedingChars = (haystack: string, index: number | undefined): string =>
+  index === undefined ? "" : haystack.slice(Math.max(0, index - 2), index);
+
+const validPaymentCard = (value: string, preceding = ""): boolean => {
+  if (DECIMAL_FRACTION_BEFORE.test(preceding)) return false;
   const digits = value.replace(/\D/gu, "");
   if (digits.length < 13 || digits.length > 19) return false;
   // Unix epoch milliseconds are commonly serialized as 13 digits and happen
@@ -69,8 +78,15 @@ export const redactText = (value: string): string =>
   value
     .replace(BEARER, (_match, scheme: string) => `${scheme} ${REDACTED}`)
     .replace(JWT, REDACTED)
-    .replace(PAYMENT_CARD_CANDIDATE, (candidate) =>
-      validPaymentCard(candidate) ? REDACTED : candidate,
+    .replace(
+      PAYMENT_CARD_CANDIDATE,
+      (candidate: string, offset: number, whole: string) =>
+        validPaymentCard(
+          candidate,
+          whole.slice(Math.max(0, offset - 2), offset),
+        )
+          ? REDACTED
+          : candidate,
     )
     .replace(
       /\b((?:access_?token|api_?key|authorization|client_?secret|cookie|id_?token|password|refresh_?token|secret|session|signature|token(?:ization_?key)?)\s*[:=]\s*)(?!\[REDACTED\])[^,;\s]+/giu,
@@ -300,7 +316,7 @@ export const auditDiagnosticText = (value: string): DiagnosticAuditResult => {
   }
   PAYMENT_CARD_CANDIDATE.lastIndex = 0;
   for (const match of value.matchAll(PAYMENT_CARD_CANDIDATE)) {
-    if (validPaymentCard(match[0])) {
+    if (validPaymentCard(match[0], precedingChars(value, match.index))) {
       addFinding("payment-card-number", "serialized-export");
       break;
     }
@@ -315,7 +331,7 @@ export const auditDiagnosticText = (value: string): DiagnosticAuditResult => {
         if (JWT.test(item)) addFinding("jwt", path);
         PAYMENT_CARD_CANDIDATE.lastIndex = 0;
         for (const match of item.matchAll(PAYMENT_CARD_CANDIDATE)) {
-          if (validPaymentCard(match[0])) {
+          if (validPaymentCard(match[0], precedingChars(item, match.index))) {
             addFinding("payment-card-number", path);
             break;
           }

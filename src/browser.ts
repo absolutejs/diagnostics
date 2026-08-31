@@ -56,6 +56,15 @@ export type BrowserDiagnostics = {
   start: (options?: StartBrowserDiagnosticOptions) => BrowserDiagnosticSession;
 };
 
+// Performance timings are IEEE-754 floats, so a 10.7ms duration serializes as
+// `10.700000000186265`. That trailing noise is not information — nobody debugs
+// on femtoseconds — and it is actively harmful: a 15-digit run of it passes the
+// redaction audit's Luhn check often enough that a capture full of resource
+// timings reliably fails as a "payment card number". Round on the way in.
+const MS_PRECISION = 1_000;
+const roundMs = (value: number): number =>
+  Math.round(value * MS_PRECISION) / MS_PRECISION;
+
 const randomId = (): string =>
   typeof crypto !== "undefined" && typeof crypto.randomUUID === "function"
     ? crypto.randomUUID()
@@ -540,7 +549,7 @@ export const createBrowserDiagnostics = (
             if (raw.entryType !== "resource" || ignoredUrl(raw.name)) continue;
             const resource = raw as PerformanceResourceTiming;
             addNetwork({
-              durationMs: resource.duration,
+              durationMs: roundMs(resource.duration),
               id: randomId(),
               initiator: "resource",
               request: {
@@ -558,14 +567,14 @@ export const createBrowserDiagnostics = (
                           : { description: timing.description.slice(0, 512) }),
                         ...(timing.duration < 0
                           ? {}
-                          : { duration: timing.duration }),
+                          : { duration: roundMs(timing.duration) }),
                         name: timing.name,
                       })),
                     }),
                 status: resource.responseStatus ?? 0,
                 transferSize: resource.transferSize,
               },
-              startedAt: performance.timeOrigin + resource.startTime,
+              startedAt: roundMs(performance.timeOrigin + resource.startTime),
             });
           }
         });

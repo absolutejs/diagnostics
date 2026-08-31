@@ -1,6 +1,6 @@
 {
   "name": "@absolutejs/diagnostics",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Privacy-first AbsoluteJS Support Mode: bounded browser diagnostics, redacted HAR capture, correlated support bundles, secure lifecycle storage, native UI, and operator tooling.",
   "repository": {
     "type": "git",

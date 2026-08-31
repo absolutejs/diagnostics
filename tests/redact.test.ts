@@ -143,4 +143,30 @@ describe("diagnostic redaction", () => {
     expect(redacted.text).toContain("1787942400000");
     expect(redacted.audit.safeToShare).toBe(true);
   });
+
+  // A resource timing of 10.7ms serializes as `10.700000000186265`, and that
+  // 15-digit fractional run passes Luhn. Treating it as a card number made
+  // ordinary captures — which carry hundreds of timings — fail the audit.
+  test("does not read a decimal fraction as a payment card number", () => {
+    const audit = auditDiagnosticText(
+      JSON.stringify({
+        durations: [10.700000000186265, 35.10000000055879, 55.700000000186265],
+      }),
+    );
+
+    expect(audit.safeToShare).toBe(true);
+    expect(
+      audit.findings.some((finding) => finding.code === "payment-card-number"),
+    ).toBe(false);
+  });
+
+  test("still catches a card number that follows a decimal number", () => {
+    const audit = auditDiagnosticText(
+      JSON.stringify({ amount: 10.5, cardNumber: "4111111111111111" }),
+    );
+
+    expect(
+      audit.findings.some((finding) => finding.code === "payment-card-number"),
+    ).toBe(true);
+  });
 });
