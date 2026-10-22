@@ -56,7 +56,7 @@ export const diagnosticCorrelationPlugin = (
       await options.onRequest?.(diagnosticCorrelation, request);
       return { diagnosticCorrelation };
     })
-    .afterHandle("plugin", ({ diagnosticCorrelation, set }) => {
+    .onAfterHandle("plugin", ({ diagnosticCorrelation, set }) => {
       if (options.serverTiming !== false) {
         const duration = Math.max(
           0,
