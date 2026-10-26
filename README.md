@@ -320,3 +320,19 @@ diagnosticsPlugin(options) => Elysia
 BSL-1.1 with a named carveout against competing hosted diagnostics,
 error-tracking, session-replay, and observability services. Change date:
 August 28, 2030, then Apache 2.0.
+
+## Diagnostic job completion and process exit
+
+`@absolutejs/diagnostics/run` exposes `createDiagnosticRunLifecycle`, a host-neutral state machine for renderer captures, benchmark jobs and other bounded diagnostic runs. It installs no process listeners, filesystem writes or browser hooks. Persist its immutable snapshots through your existing diagnostic storage.
+
+```ts
+import { createDiagnosticRunLifecycle } from "@absolutejs/diagnostics/run";
+
+const run = createDiagnosticRunLifecycle();
+// After assertions and awaited resource/browser cleanup:
+run.finish("completed", { sourceUnchanged: true });
+// The host's real process-exit handler supplies this evidence:
+const receipt = run.exited(0);
+```
+
+Successful assertions alone do not establish a clean process exit: `processExitCode` remains absent until observed. A later nonzero exit or explicit signal changes success to `interrupted` and retains `assertionStatus: 'completed'`. Exiting before `finish`, even with code zero, is incomplete. Changed source invalidates success; original failures and invalidations cannot be overwritten by later success. Repeated termination reports preserve the first observation. Error text is limited to 2,000 characters; hosts must redact it before passing it here. Power loss and unobserved SIGKILL cannot run exit handlers, so retain a heartbeat or running record separately.
