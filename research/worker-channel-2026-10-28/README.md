@@ -13,9 +13,9 @@ durable server jobs. None provides this browser worker diagnostic-frame protocol
 No PAAS files are touched. Sources and evidence live in this durable worktree.
 
 37 package tests / 175 assertions pass, including nine channel tests. Type checking
-and build pass. Published-subpath consumer checks pass. The browser check runs
+and build pass. Published-subpath consumer checks pass. The browser probe is designed to run
 with GPU disabled, receives/redacts a checkpoint, acknowledges receipt, then
-observes an intentional worker exception. It proves retention of an already
+observes an intentional worker exception. On success it proves retention of an already
 received checkpoint, not delivery after arbitrary termination or power loss.
 
 The normative HTML worker termination algorithm discards queued tasks and can
@@ -29,3 +29,12 @@ The first changelog check correctly rejected stale generated Markdown and could
 not compare registry in the sandbox. Markdown was regenerated using the package's
 canonical renderer; online comparison is a separate gate. Publication is not
 claimed until archive and registry verification complete.
+
+Initial browser execution did not start: this package uses Playwright 1.62.1 but
+its matching browser download is absent. A retry explicitly selects the already
+installed Chromium binary used by the physics checks, without enabling GPU.
+
+Final browser retry passes on installed Chromium 149.0.7827.55, GPU disabled.
+The retained checkpoint is redacted and the intentional worker exception is
+observed separately. Online changelog comparison and package manifest checks
+pass. Consumer checks verify both existing run and new worker exports.

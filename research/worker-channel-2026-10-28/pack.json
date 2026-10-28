@@ -1,0 +1,406 @@
+[
+  {
+    "id": "@absolutejs/diagnostics@0.5.0",
+    "name": "@absolutejs/diagnostics",
+    "version": "0.5.0",
+    "size": 107315,
+    "unpackedSize": 427109,
+    "shasum": "4e7f4e8c910ee3ec275854675c8abec8e1b70214",
+    "integrity": "sha512-cbc3reNw3tLP6cWFApSNCrMZrw8Gnj5jXd7dKrH9VqVgwoqRF1T3qb5j9kPGAPqYcFqaTy/CfIzIGvuso+dayA==",
+    "filename": "absolutejs-diagnostics-0.5.0.tgz",
+    "files": [
+      {
+        "path": "CHANGELOG.md",
+        "size": 2171,
+        "mode": 420
+      },
+      {
+        "path": "LICENSE",
+        "size": 2487,
+        "mode": 420
+      },
+      {
+        "path": "README.md",
+        "size": 15089,
+        "mode": 420
+      },
+      {
+        "path": "changelog.json",
+        "size": 2774,
+        "mode": 420
+      },
+      {
+        "path": "dist/blob.d.ts",
+        "size": 1573,
+        "mode": 420
+      },
+      {
+        "path": "dist/blob.d.ts.map",
+        "size": 1421,
+        "mode": 420
+      },
+      {
+        "path": "dist/blob.js",
+        "size": 4057,
+        "mode": 420
+      },
+      {
+        "path": "dist/blob.js.map",
+        "size": 9329,
+        "mode": 420
+      },
+      {
+        "path": "dist/browser.d.ts",
+        "size": 1293,
+        "mode": 420
+      },
+      {
+        "path": "dist/browser.d.ts.map",
+        "size": 1145,
+        "mode": 420
+      },
+      {
+        "path": "dist/browser.js",
+        "size": 304,
+        "mode": 420
+      },
+      {
+        "path": "dist/browser.js.map",
+        "size": 144,
+        "mode": 420
+      },
+      {
+        "path": "dist/contracts.d.ts",
+        "size": 3798,
+        "mode": 420
+      },
+      {
+        "path": "dist/contracts.d.ts.map",
+        "size": 3978,
+        "mode": 420
+      },
+      {
+        "path": "dist/elysia.d.ts",
+        "size": 7693,
+        "mode": 420
+      },
+      {
+        "path": "dist/elysia.d.ts.map",
+        "size": 2264,
+        "mode": 420
+      },
+      {
+        "path": "dist/elysia.js",
+        "size": 16559,
+        "mode": 420
+      },
+      {
+        "path": "dist/elysia.js.map",
+        "size": 42819,
+        "mode": 420
+      },
+      {
+        "path": "dist/har.d.ts",
+        "size": 2248,
+        "mode": 420
+      },
+      {
+        "path": "dist/har.d.ts.map",
+        "size": 2210,
+        "mode": 420
+      },
+      {
+        "path": "dist/har.js",
+        "size": 393,
+        "mode": 420
+      },
+      {
+        "path": "dist/har.js.map",
+        "size": 144,
+        "mode": 420
+      },
+      {
+        "path": "dist/index-3yaya2wy.js",
+        "size": 2008,
+        "mode": 420
+      },
+      {
+        "path": "dist/index-3yaya2wy.js.map",
+        "size": 3921,
+        "mode": 420
+      },
+      {
+        "path": "dist/index-8dbg29n3.js",
+        "size": 3670,
+        "mode": 420
+      },
+      {
+        "path": "dist/index-8dbg29n3.js.map",
+        "size": 8486,
+        "mode": 420
+      },
+      {
+        "path": "dist/index-k7qwca5c.js",
+        "size": 13943,
+        "mode": 420
+      },
+      {
+        "path": "dist/index-k7qwca5c.js.map",
+        "size": 27611,
+        "mode": 420
+      },
+      {
+        "path": "dist/index-qmpxx8gk.js",
+        "size": 245,
+        "mode": 420
+      },
+      {
+        "path": "dist/index-qmpxx8gk.js.map",
+        "size": 3990,
+        "mode": 420
+      },
+      {
+        "path": "dist/index-r62cf5s1.js",
+        "size": 18002,
+        "mode": 420
+      },
+      {
+        "path": "dist/index-r62cf5s1.js.map",
+        "size": 35631,
+        "mode": 420
+      },
+      {
+        "path": "dist/index-y4qd4srj.js",
+        "size": 3859,
+        "mode": 420
+      },
+      {
+        "path": "dist/index-y4qd4srj.js.map",
+        "size": 7594,
+        "mode": 420
+      },
+      {
+        "path": "dist/index.d.ts",
+        "size": 192,
+        "mode": 420
+      },
+      {
+        "path": "dist/index.d.ts.map",
+        "size": 228,
+        "mode": 420
+      },
+      {
+        "path": "dist/index.js",
+        "size": 1702,
+        "mode": 420
+      },
+      {
+        "path": "dist/index.js.map",
+        "size": 144,
+        "mode": 420
+      },
+      {
+        "path": "dist/manifest.d.ts",
+        "size": 1009,
+        "mode": 420
+      },
+      {
+        "path": "dist/manifest.d.ts.map",
+        "size": 202,
+        "mode": 420
+      },
+      {
+        "path": "dist/manifest.js",
+        "size": 3192,
+        "mode": 420
+      },
+      {
+        "path": "dist/manifest.js.map",
+        "size": 5100,
+        "mode": 420
+      },
+      {
+        "path": "dist/manifest.json",
+        "size": 2825,
+        "mode": 420
+      },
+      {
+        "path": "dist/playwright-fz0ywq8f.js",
+        "size": 13847,
+        "mode": 420
+      },
+      {
+        "path": "dist/playwright-fz0ywq8f.js.map",
+        "size": 27612,
+        "mode": 420
+      },
+      {
+        "path": "dist/playwright.d.ts",
+        "size": 1354,
+        "mode": 420
+      },
+      {
+        "path": "dist/playwright.d.ts.map",
+        "size": 1339,
+        "mode": 420
+      },
+      {
+        "path": "dist/playwright.js",
+        "size": 5684,
+        "mode": 420
+      },
+      {
+        "path": "dist/playwright.js.map",
+        "size": 12355,
+        "mode": 420
+      },
+      {
+        "path": "dist/redact.d.ts",
+        "size": 1854,
+        "mode": 420
+      },
+      {
+        "path": "dist/redact.d.ts.map",
+        "size": 1295,
+        "mode": 420
+      },
+      {
+        "path": "dist/redact.js",
+        "size": 663,
+        "mode": 420
+      },
+      {
+        "path": "dist/redact.js.map",
+        "size": 144,
+        "mode": 420
+      },
+      {
+        "path": "dist/run.d.ts",
+        "size": 1957,
+        "mode": 420
+      },
+      {
+        "path": "dist/run.d.ts.map",
+        "size": 996,
+        "mode": 420
+      },
+      {
+        "path": "dist/run.js",
+        "size": 2198,
+        "mode": 420
+      },
+      {
+        "path": "dist/run.js.map",
+        "size": 4839,
+        "mode": 420
+      },
+      {
+        "path": "dist/support.d.ts",
+        "size": 736,
+        "mode": 420
+      },
+      {
+        "path": "dist/support.d.ts.map",
+        "size": 721,
+        "mode": 420
+      },
+      {
+        "path": "dist/support.js",
+        "size": 417,
+        "mode": 420
+      },
+      {
+        "path": "dist/support.js.map",
+        "size": 144,
+        "mode": 420
+      },
+      {
+        "path": "dist/trace.d.ts",
+        "size": 347,
+        "mode": 420
+      },
+      {
+        "path": "dist/trace.d.ts.map",
+        "size": 346,
+        "mode": 420
+      },
+      {
+        "path": "dist/trace.js",
+        "size": 285,
+        "mode": 420
+      },
+      {
+        "path": "dist/trace.js.map",
+        "size": 144,
+        "mode": 420
+      },
+      {
+        "path": "dist/ui.d.ts",
+        "size": 2035,
+        "mode": 420
+      },
+      {
+        "path": "dist/ui.d.ts.map",
+        "size": 1911,
+        "mode": 420
+      },
+      {
+        "path": "dist/ui.js",
+        "size": 11590,
+        "mode": 420
+      },
+      {
+        "path": "dist/ui.js.map",
+        "size": 22455,
+        "mode": 420
+      },
+      {
+        "path": "dist/viewer.d.ts",
+        "size": 1081,
+        "mode": 420
+      },
+      {
+        "path": "dist/viewer.d.ts.map",
+        "size": 1072,
+        "mode": 420
+      },
+      {
+        "path": "dist/viewer.js",
+        "size": 5577,
+        "mode": 420
+      },
+      {
+        "path": "dist/viewer.js.map",
+        "size": 10717,
+        "mode": 420
+      },
+      {
+        "path": "dist/worker.d.ts",
+        "size": 2537,
+        "mode": 420
+      },
+      {
+        "path": "dist/worker.d.ts.map",
+        "size": 1112,
+        "mode": 420
+      },
+      {
+        "path": "dist/worker.js",
+        "size": 4730,
+        "mode": 420
+      },
+      {
+        "path": "dist/worker.js.map",
+        "size": 10422,
+        "mode": 420
+      },
+      {
+        "path": "package.json",
+        "size": 5146,
+        "mode": 420
+      }
+    ],
+    "entryCount": 78,
+    "bundled": []
+  }
+]
