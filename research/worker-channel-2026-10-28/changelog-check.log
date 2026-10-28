@@ -1,0 +1,4 @@
+This package’s changelog does not hold:
+  CHANGELOG.md is not what the entries say it should be — it is generated; run `absolute-changelog release` or restore it
+  the registry did not answer for @absolutejs/diagnostics, so nothing was compared — pass --offline to skip the comparison deliberately
+error: "absolute-changelog" exited with code 1

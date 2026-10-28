@@ -1,0 +1,61 @@
+bun test v1.4.4+absolute.1 (38afee6c8)
+
+tests/browser.test.ts:
+(pass) browser diagnostics > is explicitly started, bounded, and redacts before retaining bodies [41.73ms]
+
+tests/blob.test.ts:
+(pass) diagnostic blob capture lifecycle > enforces expiry, download limits, and idempotent deletion [3.86ms]
+
+tests/elysia.test.ts:
+(pass) diagnostics Elysia relay > exposes bounded request correlation and server timing [39.62ms]
+(pass) diagnostics Elysia relay > defaults closed [932.31ms]
+(pass) diagnostics Elysia relay > redacts again before storing and retrieves authorized captures [9.82ms]
+(pass) diagnostics Elysia relay > issues short-lived signed downloads and supports explicit deletion [30.19ms]
+
+tests/redact.test.ts:
+(pass) diagnostic redaction > removes credentials, payment data, card numbers, and query values [1.20ms]
+(pass) diagnostic redaction > removes every query value unless explicitly safe [0.66ms]
+(pass) diagnostic redaction > exports a parseable, audited HAR 1.2 document [1.37ms]
+(pass) diagnostic redaction > redacts a true DevTools HAR without flattening timings [2.96ms]
+(pass) diagnostic redaction > rejects unredacted authorization data [0.55ms]
+(pass) diagnostic redaction > audits header order and HAR cookie arrays structurally [0.68ms]
+(pass) diagnostic redaction > redacts valid payment card numbers but permits epoch timestamps [0.87ms]
+(pass) diagnostic redaction > does not read a decimal fraction as a payment card number [0.23ms]
+(pass) diagnostic redaction > still catches a card number that follows a decimal number [0.24ms]
+
+tests/support.test.ts:
+(pass) support bundles > correlates and redacts one audited artifact [5.63ms]
+(pass) support bundles > runs an explicit record-review-send state machine [8.28ms]
+(pass) support bundles > compares successful and failed support captures [5.45ms]
+(pass) support bundles > connects an accessible native report element [50.93ms]
+
+tests/worker.test.ts:
+(pass) worker frames are redacted, correlated, owned, and ignore ordinary task results [2.02ms]
+(pass) message attempts are bounded even when producer fields are invalid [0.30ms]
+(pass) UTF-8 byte limits and aggregate limits apply before callback delivery [1.09ms]
+(pass) callbacks and serialization errors are accounted without escaping into computation [0.67ms]
+(pass) receiver rejects malformed data before JSON parsing and enforces its own budget [0.35ms]
+(pass) loss, stale ordering, close and callback reentrancy have explicit bounded accounting [1.11ms]
+(pass) receiver redacts a producer that bypassed the reporter [0.29ms]
+(pass) invalid configuration is rejected without sending or receiving [0.35ms]
+(pass) channel identity and callbacks are captured rather than following mutable options [0.20ms]
+
+tests/manifest.test.ts:
+(pass) declares an opt-in observability manifest [0.08ms]
+
+tests/run.test.ts:
+(pass) success stays provisional until an observed zero exit, with immutable snapshots [1.05ms]
+(pass) late exit %s / %s invalidates success [0.26ms]
+(pass) late exit %s / SIGTERM invalidates success [0.13ms]
+(pass) late exit %s / SIGINT invalidates success [0.03ms]
+(pass) early zero exit is incomplete and failure/source invalidation cannot be erased [0.24ms]
+(pass) rejects invalid host evidence without mutating state and bounds error text [0.56ms]
+
+tests/trace.test.ts:
+(pass) diagnostic trace correlation > parses valid W3C traceparent and rejects invalid identifiers [0.15ms]
+(pass) diagnostic trace correlation > parses bounded Server-Timing metrics [0.40ms]
+
+ 37 pass
+ 0 fail
+ 175 expect() calls
+Ran 37 tests across 9 files. [1.79s]

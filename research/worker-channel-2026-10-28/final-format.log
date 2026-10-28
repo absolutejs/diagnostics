@@ -1,0 +1,3 @@
+src/worker.ts 263ms
+tests/worker.test.ts 134ms
+README.md 393ms

@@ -1,0 +1,2 @@
+$ absolute-manifest verify-package
+absolute-manifest: peer dependencies valid in /home/alexkahn/alex/diagnostics-worker-channel

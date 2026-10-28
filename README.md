@@ -336,3 +336,52 @@ const receipt = run.exited(0);
 ```
 
 Successful assertions alone do not establish a clean process exit: `processExitCode` remains absent until observed. A later nonzero exit or explicit signal changes success to `interrupted` and retains `assertionStatus: 'completed'`. Exiting before `finish`, even with code zero, is incomplete. Changed source invalidates success; original failures and invalidations cannot be overwritten by later success. Repeated termination reports preserve the first observation. Error text is limited to 2,000 characters; hosts must redact it before passing it here. Power loss and unobserved SIGKILL cannot run exit handlers, so retain a heartbeat or running record separately.
+
+## Bounded worker diagnostic checkpoints
+
+Import `createWorkerDiagnosticReporter` and `createWorkerDiagnosticReceiver`
+from `@absolutejs/diagnostics/worker`. These helpers do not create workers or
+listeners. They exchange a distinct diagnostic envelope alongside your existing
+worker task protocol. Bind both ends to the same non-sensitive job identifier.
+
+```ts
+// Worker, after validating the job input:
+const reporter = createWorkerDiagnosticReporter({
+  jobId,
+  send: (frame) => self.postMessage(frame),
+});
+reporter.emit("physics.started", { engineVersion });
+// Emit bounded selected checkpoints during your job, then close the reporter.
+
+// Host, alongside the existing task message handler:
+const receiver = createWorkerDiagnosticReceiver({
+  jobId,
+  onRecord: (entry) =>
+    record(entry.event, { jobId: entry.jobId, ...entry.fields }),
+});
+worker.addEventListener("message", (event) => receiver.receive(event.data));
+// Close on completion/cancellation and remove listeners with your worker owner.
+```
+
+Defaults are 32 attempted messages, 16 KiB of UTF-8 JSON per message and 256 KiB
+of JSON per job. Limits count JSON payload, not envelope/structured-clone overhead.
+Both ends enforce limits independently. Invalid/dropped attempts consume the
+message budget. Ordinary task replies and other job identifiers are ignored.
+Duplicate/out-of-order sequences are rejected and gaps are counted. JSON length
+and UTF-8 byte budgets are checked before receiver parsing. Producer fields are
+redacted before sending; received fields are redacted again before the callback.
+
+The producer must supply trusted bounded objects: wire limits do not bound the
+cost of traversing an arbitrarily large input object. Callbacks must be synchronous.
+Thrown callbacks/serialization failures are counted and do not escape into the
+measured computation. Sender `sentBytes` conservatively includes attempted sends
+whose callbacks threw (a callback could post and then throw). Receiver `accepted`
+means a valid frame was received; inspect `errors` for callback failures. No queue,
+retry, network upload, listener, persistence or authorization is implicit. Attach
+existing host logging/delivery and permission policy; this is not an authentication
+boundary or proof of a worker's assertions. Use non-sensitive IDs and event names.
+
+A checkpoint received by the host can outlive worker failure; a worker termination
+can discard queued messages, so no final report is guaranteed. Browser/process or
+power loss still requires the host's durable storage policy. See the normative
+[HTML worker lifecycle](https://html.spec.whatwg.org/multipage/workers.html).

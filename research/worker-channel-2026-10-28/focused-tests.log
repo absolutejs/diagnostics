@@ -1,0 +1,16 @@
+bun test v1.4.4+absolute.1 (38afee6c8)
+
+tests/worker.test.ts:
+(pass) worker frames are redacted, correlated, owned, and ignore ordinary task results [2.44ms]
+(pass) message attempts are bounded even when producer fields are invalid [0.37ms]
+(pass) UTF-8 byte limits and aggregate limits apply before callback delivery [0.91ms]
+(pass) callbacks and serialization errors are accounted without escaping into computation [0.24ms]
+(pass) receiver rejects malformed data before JSON parsing and enforces its own budget [0.15ms]
+(pass) loss, stale ordering, close and callback reentrancy have explicit bounded accounting [0.57ms]
+(pass) receiver redacts a producer that bypassed the reporter [0.30ms]
+(pass) invalid configuration is rejected without sending or receiving [0.92ms]
+
+ 8 pass
+ 0 fail
+ 55 expect() calls
+Ran 8 tests across 1 file. [22.00ms]

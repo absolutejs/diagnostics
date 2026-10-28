@@ -1,0 +1,21 @@
+57346 |   else if (error.error.name === "TargetClosedError")
+57347 |     e = new TargetClosedError2(error.error.message);
+57348 |   else if (error.error.name === "AbortError")
+57349 |     e = new AbortError2(error.error.message);
+57350 |   else
+57351 |     e = Object.assign(new PlaywrightError(error.error.message), { name: error.error.name });
+                                  ^
+error: launch: Executable doesn't exist at /home/alexkahn/.cache/ms-playwright/chromium_headless_shell-1234/chrome-headless-shell-linux64/chrome-headless-shell
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     npx playwright install                                 ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝
+  log: [],
+
+      at /home/alexkahn/alex/diagnostics-run-release/node_modules/playwright-core/lib/coreBundle.js:57351:27
+
+Bun v1.4.4+absolute.1 (Linux x64)
