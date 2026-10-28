@@ -38,3 +38,15 @@ Final browser retry passes on installed Chromium 149.0.7827.55, GPU disabled.
 The retained checkpoint is redacted and the intentional worker exception is
 observed separately. Online changelog comparison and package manifest checks
 pass. Consumer checks verify both existing run and new worker exports.
+
+## Canonical publication
+
+Pushing main triggered the repository's existing trusted-publishing workflow,
+run 40667603434 at e78168c. It staged 0.5.0 before the manual OTP attempt, which
+returned E409. The extra user confirmation was unnecessary; future diagnostics
+releases must use the existing trusted workflow rather than compete with it.
+Registry SHA1/integrity now match the downloaded CI archive. Its 70 identical
+files include every executable, declaration and package metadata file; eight
+source maps differ only in mappings. CI uses its existing Bun 1.4.2 while local
+checks use required BVM 1.4.4+absolute.1. No native payload is involved. Adopt
+against the CI archive identity, not the different local tarball checksum.

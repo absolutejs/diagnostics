@@ -1,0 +1,48 @@
+{
+  "name": "@absolutejs/diagnostics",
+  "version": "0.5.0",
+  "ciRun": "https://github.com/absolutejs/diagnostics/actions/runs/40667603434",
+  "source": "e78168c28d40b85fe4c3ba2826ecb4b7a23f19c4",
+  "tarballSha256": "4f5a68115b2e28c4595dc334a7e56b5b74b6bae2058e0a3df3a97a6a0a29aecf",
+  "shasum": "714b8c1a9d93cc97341f7c092c34d6a96d00a6a4",
+  "integrity": "sha512-Iyw7QhAqfMsdE14F+cH67QKvQ+WpfCyPcGYqsCFrcujik/TGm9Bi4nPKGdcMP+RSXbLr2DbMKs5ex6CvcSu6MA==",
+  "sameFileListAsLocal": true,
+  "differentFiles": [
+    "package/dist/blob.js.map",
+    "package/dist/elysia.js.map",
+    "package/dist/index-3yaya2wy.js.map",
+    "package/dist/index-k7qwca5c.js.map",
+    "package/dist/index-r62cf5s1.js.map",
+    "package/dist/playwright-fz0ywq8f.js.map",
+    "package/dist/playwright.js.map",
+    "package/dist/ui.js.map"
+  ],
+  "identicalFiles": 70,
+  "sourceMapDifferences": {
+    "package/dist/blob.js.map": [
+      "mappings"
+    ],
+    "package/dist/elysia.js.map": [
+      "mappings"
+    ],
+    "package/dist/index-3yaya2wy.js.map": [
+      "mappings"
+    ],
+    "package/dist/index-k7qwca5c.js.map": [
+      "mappings"
+    ],
+    "package/dist/index-r62cf5s1.js.map": [
+      "mappings"
+    ],
+    "package/dist/playwright-fz0ywq8f.js.map": [
+      "mappings"
+    ],
+    "package/dist/playwright.js.map": [
+      "mappings"
+    ],
+    "package/dist/ui.js.map": [
+      "mappings"
+    ]
+  },
+  "allExecutableDeclarationsAndMetadataMatchLocal": true
+}

@@ -1,0 +1,23 @@
+{
+  "shasum": "714b8c1a9d93cc97341f7c092c34d6a96d00a6a4",
+  "tarball": "https://registry.npmjs.org/@absolutejs/diagnostics/-/diagnostics-0.5.0.tgz",
+  "fileCount": 78,
+  "integrity": "sha512-Iyw7QhAqfMsdE14F+cH67QKvQ+WpfCyPcGYqsCFrcujik/TGm9Bi4nPKGdcMP+RSXbLr2DbMKs5ex6CvcSu6MA==",
+  "signatures": [
+    {
+      "sig": "MEYCIQDxAM/FiyYsjEJCdOzpo21SnxutXH/Ue3E2D8uu7zC0GAIhAKcXJJ/m8EvljFIKR48Rw3XlWIwO3sUSWj2Fnre89OgH",
+      "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+    },
+    {
+      "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+      "sig": "MEUCIQDEvTgBdpclxDjjEXerz3c08bF02HkpGMQtSkX9tVPM6wIgH8bg7ci5xSems3Si5ZIcpHaXGesk6STkMpzaKZ3aTLY="
+    }
+  ],
+  "attestations": {
+    "url": "https://registry.npmjs.org/-/npm/v1/attestations/@absolutejs%2fdiagnostics@0.5.0",
+    "provenance": {
+      "predicateType": "https://slsa.dev/provenance/v1"
+    }
+  },
+  "unpackedSize": 427020
+}

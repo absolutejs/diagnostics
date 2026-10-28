@@ -1,0 +1,8 @@
+{
+  "published": true,
+  "via": "GitHub trusted publishing",
+  "source": "e78168c28d40b85fe4c3ba2826ecb4b7a23f19c4",
+  "ciRun": "https://github.com/absolutejs/diagnostics/actions/runs/40667603434",
+  "registryMatchesCIArtifact": true,
+  "manualAttempt": "E409 previously staged version; no second successful publish"
+}

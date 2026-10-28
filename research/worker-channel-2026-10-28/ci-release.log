@@ -1,0 +1,689 @@
+build	Set up job	﻿2026-10-28T09:52:13.8588869Z Current runner version: '2.338.0'
+build	Set up job	2026-10-28T09:52:13.8615236Z ##[group]Runner Image Provisioner
+build	Set up job	2026-10-28T09:52:13.8616131Z Hosted Compute Agent
+build	Set up job	2026-10-28T09:52:13.8616882Z Version: 20261021.618
+build	Set up job	2026-10-28T09:52:13.8617542Z Commit: 21505ad2541d5be6135ed84fc33697146cf75b8e
+build	Set up job	2026-10-28T09:52:13.8618273Z Build Date: 2026-10-21T00:45:21Z
+build	Set up job	2026-10-28T09:52:13.8619061Z Worker ID: {1db63a97-79eb-46dd-a170-acb4456a891b}
+build	Set up job	2026-10-28T09:52:13.8619816Z Region: westcentralus
+build	Set up job	2026-10-28T09:52:13.8620764Z Cloud: Azure
+build	Set up job	2026-10-28T09:52:13.8621334Z ##[endgroup]
+build	Set up job	2026-10-28T09:52:13.8622627Z ##[group]Operating System
+build	Set up job	2026-10-28T09:52:13.8623367Z Ubuntu
+build	Set up job	2026-10-28T09:52:13.8623926Z 24.04.5
+build	Set up job	2026-10-28T09:52:13.8624931Z LTS
+build	Set up job	2026-10-28T09:52:13.8625497Z ##[endgroup]
+build	Set up job	2026-10-28T09:52:13.8626080Z ##[group]Runner Image
+build	Set up job	2026-10-28T09:52:13.8626742Z Image: ubuntu-24.04
+build	Set up job	2026-10-28T09:52:13.8627396Z Version: 20261012.334.1
+build	Set up job	2026-10-28T09:52:13.8628559Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261012.334/images/ubuntu/Ubuntu2404-Readme.md
+build	Set up job	2026-10-28T09:52:13.8630472Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261012.334
+build	Set up job	2026-10-28T09:52:13.8631493Z ##[endgroup]
+build	Set up job	2026-10-28T09:52:13.8632702Z ##[group]GITHUB_TOKEN Permissions
+build	Set up job	2026-10-28T09:52:13.8634700Z Contents: read
+build	Set up job	2026-10-28T09:52:13.8635335Z Metadata: read
+build	Set up job	2026-10-28T09:52:13.8636006Z ##[endgroup]
+build	Set up job	2026-10-28T09:52:13.8638522Z Secret source: Actions
+build	Set up job	2026-10-28T09:52:13.8639502Z Cache mode: write
+build	Set up job	2026-10-28T09:52:13.8640788Z Prepare workflow directory
+build	Set up job	2026-10-28T09:52:13.9021754Z Prepare all required actions
+build	Set up job	2026-10-28T09:52:13.9068620Z Getting action download info
+build	Set up job	2026-10-28T09:52:14.2553665Z Download action repository 'actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1' (SHA:3d3c42e5aac5ba805825da76410c181273ba90b1)
+build	Set up job	2026-10-28T09:52:14.3546273Z Download action repository 'oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6' (SHA:0c5077e51419868618aeaa5fe8019c62421857d6)
+build	Set up job	2026-10-28T09:52:14.9272465Z Download action repository 'actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1' (SHA:949feb2413d6458794dcd2491c4babbbce0c15c1)
+build	Set up job	2026-10-28T09:52:15.6952370Z Download action repository 'actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9' (SHA:cf430e030ddbb5b0abf93d22962f4752f3646cd9)
+build	Set up job	2026-10-28T09:52:16.6490370Z Complete job name: build
+build	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	﻿2026-10-28T09:52:16.7309464Z ##[group]Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+build	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-28T09:52:16.7310491Z with:
+build	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-28T09:52:16.7310753Z   persist-credentials: false
+build	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-28T09:52:16.7311039Z   repository: absolutejs/diagnostics
+build	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-28T09:52:16.7313647Z   token: ***
+build	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-28T09:52:16.7313878Z   ssh-strict: true
+build	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-28T09:52:16.7314107Z   ssh-user: git
+build	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-28T09:52:16.7314325Z   clean: true
+build	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-28T09:52:16.7314561Z   sparse-checkout-cone-mode: true
+build	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-28T09:52:16.7314843Z   fetch-depth: 1
+build	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-28T09:52:16.7315070Z   fetch-tags: false
+build	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-28T09:52:16.7315306Z   show-progress: true
+build	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-28T09:52:16.7315583Z   lfs: false
+build	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-28T09:52:16.7315792Z   submodules: false
+build	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-28T09:52:16.7316021Z   set-safe-directory: true
+build	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-28T09:52:16.7316299Z   allow-unsafe-pr-checkout: false
+build	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-28T09:52:16.7316784Z ##[endgroup]
+build	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-28T09:52:16.9899218Z Syncing repository: absolutejs/diagnostics
+build	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-28T09:52:16.9901188Z ##[group]Getting Git version info
+build	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-28T09:52:16.9901747Z Working directory is '/home/runner/work/diagnostics/diagnostics'
+build	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-28T09:52:16.9902374Z [command]/usr/bin/git version
+build	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-28T09:52:16.9972555Z git version 2.55.0
+build	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-28T09:52:16.9994851Z ##[endgroup]
+build	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-28T09:52:17.0006800Z Temporarily overriding HOME='/home/runner/work/_temp/86713dec-6914-43c6-939c-a13ba82ff893' before making global git config changes
+build	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-28T09:52:17.0008063Z Adding repository directory to the temporary git global config as a safe directory
+build	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-28T09:52:17.0013400Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/diagnostics/diagnostics
+build	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-28T09:52:17.0060069Z Deleting the contents of '/home/runner/work/diagnostics/diagnostics'
+build	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-28T09:52:17.0063869Z ##[group]Determining repository object format
+build	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-28T09:52:17.0065373Z ##[endgroup]
+build	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-28T09:52:17.0065967Z ##[group]Initializing the repository
+build	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-28T09:52:17.0070407Z [command]/usr/bin/git init /home/runner/work/diagnostics/diagnostics
+build	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-28T09:52:17.0176533Z hint: Using 'master' as the name for the initial branch. This default branch name
+build	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-28T09:52:17.0177483Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+build	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-28T09:52:17.0178030Z hint: to use in all of your new repositories, which will suppress this warning,
+build	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-28T09:52:17.0178456Z hint: call:
+build	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-28T09:52:17.0178673Z hint:
+build	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-28T09:52:17.0178988Z hint: 	git config --global init.defaultBranch <name>
+build	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-28T09:52:17.0179462Z hint:
+build	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-28T09:52:17.0179936Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+build	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-28T09:52:17.0180871Z hint: 'development'. The just-created branch can be renamed via this command:
+build	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-28T09:52:17.0181303Z hint:
+build	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-28T09:52:17.0181552Z hint: 	git branch -m <name>
+build	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-28T09:52:17.0181807Z hint:
+build	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-28T09:52:17.0182136Z hint: Disable this message with "git config set advice.defaultBranchName false"
+build	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-28T09:52:17.0182814Z Initialized empty Git repository in /home/runner/work/diagnostics/diagnostics/.git/
+build	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-28T09:52:17.0190985Z [command]/usr/bin/git remote add origin https://github.com/absolutejs/diagnostics
+build	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-28T09:52:17.0240758Z ##[endgroup]
+build	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-28T09:52:17.0241460Z ##[group]Disabling automatic garbage collection
+build	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-28T09:52:17.0245378Z [command]/usr/bin/git config --local gc.auto 0
+build	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-28T09:52:17.0278808Z ##[endgroup]
+build	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-28T09:52:17.0279897Z ##[group]Setting up auth
+build	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-28T09:52:17.0280579Z Removing SSH command configuration
+build	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-28T09:52:17.0285922Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+build	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-28T09:52:17.0320946Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+build	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-28T09:52:17.0707255Z Removing HTTP extra header
+build	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-28T09:52:17.0713681Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+build	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-28T09:52:17.0748300Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+build	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-28T09:52:17.0992874Z Removing includeIf entries pointing to credentials config files
+build	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-28T09:52:17.1002217Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+build	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-28T09:52:17.1053835Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+build	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-28T09:52:17.1304249Z [command]/usr/bin/git config --file /home/runner/work/_temp/git-credentials-473a0b1b-07b0-4a58-9907-4018d4f2e6ac.config http.https://github.com/.extraheader AUTHORIZATION: basic ***
+build	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-28T09:52:17.1345086Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/diagnostics/diagnostics/.git.path /home/runner/work/_temp/git-credentials-473a0b1b-07b0-4a58-9907-4018d4f2e6ac.config
+build	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-28T09:52:17.1377528Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/diagnostics/diagnostics/.git/worktrees/*.path /home/runner/work/_temp/git-credentials-473a0b1b-07b0-4a58-9907-4018d4f2e6ac.config
+build	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-28T09:52:17.1414076Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-473a0b1b-07b0-4a58-9907-4018d4f2e6ac.config
+build	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-28T09:52:17.1447918Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-473a0b1b-07b0-4a58-9907-4018d4f2e6ac.config
+build	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-28T09:52:17.1477708Z ##[endgroup]
+build	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-28T09:52:17.1478345Z ##[group]Fetching the repository
+build	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-28T09:52:17.1485419Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +e78168c28d40b85fe4c3ba2826ecb4b7a23f19c4:refs/remotes/origin/main
+build	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-28T09:52:17.6123553Z From https://github.com/absolutejs/diagnostics
+build	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-28T09:52:17.6124691Z  * [new ref]         e78168c28d40b85fe4c3ba2826ecb4b7a23f19c4 -> origin/main
+build	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-28T09:52:17.6136095Z [command]/usr/bin/git branch --list --remote origin/main
+build	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-28T09:52:17.6166845Z   origin/main
+build	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-28T09:52:17.6178608Z [command]/usr/bin/git rev-parse refs/remotes/origin/main
+build	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-28T09:52:17.6206177Z e78168c28d40b85fe4c3ba2826ecb4b7a23f19c4
+build	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-28T09:52:17.6212330Z ##[endgroup]
+build	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-28T09:52:17.6213024Z ##[group]Determining the checkout info
+build	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-28T09:52:17.6213661Z ##[endgroup]
+build	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-28T09:52:17.6218825Z [command]/usr/bin/git sparse-checkout disable
+build	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-28T09:52:17.6276887Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+build	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-28T09:52:17.6310044Z ##[group]Checking out the ref
+build	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-28T09:52:17.6315278Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
+build	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-28T09:52:17.6416496Z Switched to a new branch 'main'
+build	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-28T09:52:17.6423597Z branch 'main' set up to track 'origin/main'.
+build	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-28T09:52:17.6427943Z ##[endgroup]
+build	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-28T09:52:17.6480036Z [command]/usr/bin/git log -1 --format=%H
+build	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-28T09:52:17.6511803Z e78168c28d40b85fe4c3ba2826ecb4b7a23f19c4
+build	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-28T09:52:17.6523585Z ##[group]Removing auth
+build	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-28T09:52:17.6524104Z Removing SSH command configuration
+build	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-28T09:52:17.6605174Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+build	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-28T09:52:17.6614888Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+build	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-28T09:52:17.6808884Z Removing HTTP extra header
+build	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-28T09:52:17.6812737Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+build	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-28T09:52:17.6846183Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+build	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-28T09:52:17.7086170Z Removing includeIf entries pointing to credentials config files
+build	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-28T09:52:17.7092684Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+build	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-28T09:52:17.7121697Z includeif.gitdir:/home/runner/work/diagnostics/diagnostics/.git.path
+build	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-28T09:52:17.7122342Z includeif.gitdir:/home/runner/work/diagnostics/diagnostics/.git/worktrees/*.path
+build	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-28T09:52:17.7122934Z includeif.gitdir:/github/workspace/.git.path
+build	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-28T09:52:17.7123542Z includeif.gitdir:/github/workspace/.git/worktrees/*.path
+build	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-28T09:52:17.7131021Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/diagnostics/diagnostics/.git.path
+build	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-28T09:52:17.7156355Z /home/runner/work/_temp/git-credentials-473a0b1b-07b0-4a58-9907-4018d4f2e6ac.config
+build	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-28T09:52:17.7166883Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/diagnostics/diagnostics/.git.path \/home\/runner\/work\/_temp\/git\-credentials\-473a0b1b\-07b0\-4a58\-9907\-4018d4f2e6ac\.config
+build	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-28T09:52:17.7202702Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/diagnostics/diagnostics/.git/worktrees/*.path
+build	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-28T09:52:17.7225416Z /home/runner/work/_temp/git-credentials-473a0b1b-07b0-4a58-9907-4018d4f2e6ac.config
+build	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-28T09:52:17.7233927Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/diagnostics/diagnostics/.git/worktrees/*.path \/home\/runner\/work\/_temp\/git\-credentials\-473a0b1b\-07b0\-4a58\-9907\-4018d4f2e6ac\.config
+build	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-28T09:52:17.7272475Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git.path
+build	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-28T09:52:17.7296121Z /github/runner_temp/git-credentials-473a0b1b-07b0-4a58-9907-4018d4f2e6ac.config
+build	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-28T09:52:17.7304199Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git.path \/github\/runner_temp\/git\-credentials\-473a0b1b\-07b0\-4a58\-9907\-4018d4f2e6ac\.config
+build	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-28T09:52:17.7336747Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git/worktrees/*.path
+build	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-28T09:52:17.7359740Z /github/runner_temp/git-credentials-473a0b1b-07b0-4a58-9907-4018d4f2e6ac.config
+build	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-28T09:52:17.7367839Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git/worktrees/*.path \/github\/runner_temp\/git\-credentials\-473a0b1b\-07b0\-4a58\-9907\-4018d4f2e6ac\.config
+build	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-28T09:52:17.7402516Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+build	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-28T09:52:17.7636774Z Removing credentials config '/home/runner/work/_temp/git-credentials-473a0b1b-07b0-4a58-9907-4018d4f2e6ac.config'
+build	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-28T09:52:17.7646460Z ##[endgroup]
+build	Run oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6	﻿2026-10-28T09:52:17.7911052Z ##[group]Run oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6
+build	Run oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6	2026-10-28T09:52:17.7911532Z with:
+build	Run oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6	2026-10-28T09:52:17.7911750Z   bun-version: 1.4.2
+build	Run oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6	2026-10-28T09:52:17.7911992Z   no-cache: false
+build	Run oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6	2026-10-28T09:52:17.7914383Z   token: ***
+build	Run oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6	2026-10-28T09:52:17.7914603Z ##[endgroup]
+build	Run oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6	2026-10-28T09:52:18.1888127Z Cache hit for: bun-gmoqYqdUbaYsI0KujeXt7Zg/p0I=
+build	Run oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6	2026-10-28T09:52:19.4341401Z Received 31489826 of 35684130 (88.2%), 30.0 MBs/sec
+build	Run oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6	2026-10-28T09:52:19.5047413Z Received 35684130 of 35684130 (100.0%), 31.8 MBs/sec
+build	Run oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6	2026-10-28T09:52:19.5048533Z Cache Size: ~34 MB (35684130 B)
+build	Run oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6	2026-10-28T09:52:19.5078437Z [command]/usr/bin/tar -xf /home/runner/work/_temp/f0bdc2da-50c8-45b0-af44-bb216ba8a7a1/cache.tzst -P -C /home/runner/work/diagnostics/diagnostics --use-compress-program unzstd
+build	Run oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6	2026-10-28T09:52:19.6411350Z Cache restored successfully
+build	Run oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6	2026-10-28T09:52:19.6436769Z [command]/home/runner/.bun/bin/bun --revision
+build	Run oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6	2026-10-28T09:52:19.6481453Z 1.4.2+744846f84
+build	Run oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6	2026-10-28T09:52:19.6487521Z Using a cached version of Bun: 1.4.2+744846f84
+build	Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1	﻿2026-10-28T09:52:19.6676495Z ##[group]Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1
+build	Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1	2026-10-28T09:52:19.6676948Z with:
+build	Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1	2026-10-28T09:52:19.6677170Z   node-version: 24
+build	Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1	2026-10-28T09:52:19.6677410Z   check-latest: false
+build	Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1	2026-10-28T09:52:19.6679819Z   token: ***
+build	Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1	2026-10-28T09:52:19.6680068Z   package-manager-cache: true
+build	Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1	2026-10-28T09:52:19.6680545Z ##[endgroup]
+build	Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1	2026-10-28T09:52:19.8009870Z Found in cache @ /opt/hostedtoolcache/node/24.21.0/x64
+build	Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1	2026-10-28T09:52:19.8691235Z ##[group]Environment details
+build	Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1	2026-10-28T09:52:20.1850859Z node: v24.21.0
+build	Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1	2026-10-28T09:52:20.1851551Z npm: 11.19.0
+build	Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1	2026-10-28T09:52:20.1852019Z yarn: 1.22.22
+build	Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1	2026-10-28T09:52:20.1853023Z ##[endgroup]
+build	Find versions npm does not have	﻿2026-10-28T09:52:20.1988144Z ##[group]Run : > plan.tsv
+build	Find versions npm does not have	2026-10-28T09:52:20.1988536Z [36;1m: > plan.tsv[0m
+build	Find versions npm does not have	2026-10-28T09:52:20.1988980Z [36;1mfor manifest in package.json */package.json packages/*/package.json; do[0m
+build	Find versions npm does not have	2026-10-28T09:52:20.1989462Z [36;1m  [ -f "$manifest" ] || continue[0m
+build	Find versions npm does not have	2026-10-28T09:52:20.1989833Z [36;1m  case "$manifest" in node_modules/*) continue ;; esac[0m
+build	Find versions npm does not have	2026-10-28T09:52:20.1990446Z [36;1m  dir=$(dirname "$manifest")[0m
+build	Find versions npm does not have	2026-10-28T09:52:20.1990835Z [36;1m  [ "$(jq -r '.private // false' "$manifest")" = "true" ] && continue[0m
+build	Find versions npm does not have	2026-10-28T09:52:20.1991231Z [36;1m  name=$(jq -r .name "$manifest")[0m
+build	Find versions npm does not have	2026-10-28T09:52:20.1991581Z [36;1m  version=$(jq -r .version "$manifest")[0m
+build	Find versions npm does not have	2026-10-28T09:52:20.1991995Z [36;1m  [ "$name" = "null" ] || [ "$version" = "null" ] && continue[0m
+build	Find versions npm does not have	2026-10-28T09:52:20.1992423Z [36;1m  if npm view "$name@$version" version >/dev/null 2>&1; then[0m
+build	Find versions npm does not have	2026-10-28T09:52:20.1992813Z [36;1m    echo "$name@$version is already on npm"[0m
+build	Find versions npm does not have	2026-10-28T09:52:20.1993122Z [36;1m    continue[0m
+build	Find versions npm does not have	2026-10-28T09:52:20.1993389Z [36;1m  fi[0m
+build	Find versions npm does not have	2026-10-28T09:52:20.1993794Z [36;1m  tag=latest[0m
+build	Find versions npm does not have	2026-10-28T09:52:20.1994174Z [36;1m  case "$version" in *-*) tag=$(printf '%s' "${version#*-}" | sed 's/[.0-9]*$//') ;; esac[0m
+build	Find versions npm does not have	2026-10-28T09:52:20.1994716Z [36;1m  printf '%s\t%s\t%s\t%s\n' "$dir" "$name" "$version" "${tag:-next}" >> plan.tsv[0m
+build	Find versions npm does not have	2026-10-28T09:52:20.1995174Z [36;1m  echo "will publish $name@$version (tag ${tag:-next})"[0m
+build	Find versions npm does not have	2026-10-28T09:52:20.1995514Z [36;1mdone[0m
+build	Find versions npm does not have	2026-10-28T09:52:20.1995971Z [36;1mif [ -s plan.tsv ]; then echo pending=true >> "$GITHUB_OUTPUT"; else echo pending=false >> "$GITHUB_OUTPUT"; fi[0m
+build	Find versions npm does not have	2026-10-28T09:52:20.2246831Z shell: /usr/bin/bash -e {0}
+build	Find versions npm does not have	2026-10-28T09:52:20.2247210Z ##[endgroup]
+build	Find versions npm does not have	2026-10-28T09:52:21.1853407Z will publish @absolutejs/diagnostics@0.5.0 (tag latest)
+build	Run bun install --frozen-lockfile	﻿2026-10-28T09:52:21.1915695Z ##[group]Run bun install --frozen-lockfile
+build	Run bun install --frozen-lockfile	2026-10-28T09:52:21.1916089Z [36;1mbun install --frozen-lockfile[0m
+build	Run bun install --frozen-lockfile	2026-10-28T09:52:21.1985938Z shell: /usr/bin/bash -e {0}
+build	Run bun install --frozen-lockfile	2026-10-28T09:52:21.1986241Z ##[endgroup]
+build	Run bun install --frozen-lockfile	2026-10-28T09:52:21.2100816Z bun install v1.4.2 (744846f84)
+build	Run bun install --frozen-lockfile	2026-10-28T09:52:21.7157592Z 
+build	Run bun install --frozen-lockfile	2026-10-28T09:52:21.7158451Z + @absolutejs/changelog@0.6.0
+build	Run bun install --frozen-lockfile	2026-10-28T09:52:21.7159071Z + @happy-dom/global-registrator@20.11.1
+build	Run bun install --frozen-lockfile	2026-10-28T09:52:21.7159559Z + @types/bun@1.3.14
+build	Run bun install --frozen-lockfile	2026-10-28T09:52:21.7159954Z + elysia@2.0.0-rc.0
+build	Run bun install --frozen-lockfile	2026-10-28T09:52:21.7160623Z + playwright@1.62.1
+build	Run bun install --frozen-lockfile	2026-10-28T09:52:21.7161023Z + prettier@3.9.6
+build	Run bun install --frozen-lockfile	2026-10-28T09:52:21.7161439Z + typescript@5.9.3
+build	Run bun install --frozen-lockfile	2026-10-28T09:52:21.7161865Z + @absolutejs/manifest@0.10.0
+build	Run bun install --frozen-lockfile	2026-10-28T09:52:21.7162332Z + @sinclair/typebox@0.34.52
+build	Run bun install --frozen-lockfile	2026-10-28T09:52:21.7162587Z 
+build	Run bun install --frozen-lockfile	2026-10-28T09:52:21.7162813Z 25 packages installed [506.00ms]
+build	Build, check and pack	﻿2026-10-28T09:52:21.7228728Z ##[group]Run mkdir -p "$RUNNER_TEMP/out"
+build	Build, check and pack	2026-10-28T09:52:21.7229134Z [36;1mmkdir -p "$RUNNER_TEMP/out"[0m
+build	Build, check and pack	2026-10-28T09:52:21.7229442Z [36;1m: > "$RUNNER_TEMP/out/plan.tsv"[0m
+build	Build, check and pack	2026-10-28T09:52:21.7229864Z [36;1mwhile IFS="$(printf '\t')" read -r dir name version tag; do[0m
+build	Build, check and pack	2026-10-28T09:52:21.7230610Z [36;1m  echo "::group::$name@$version"[0m
+build	Build, check and pack	2026-10-28T09:52:21.7231005Z [36;1m  file="$(printf '%s' "$name" | tr -d @ | tr / -)-$version.tgz"[0m
+build	Build, check and pack	2026-10-28T09:52:21.7231380Z [36;1m  ([0m
+build	Build, check and pack	2026-10-28T09:52:21.7231601Z [36;1m    cd "$dir"[0m
+build	Build, check and pack	2026-10-28T09:52:21.7231975Z [36;1m    has() { jq -e --arg s "$1" '.scripts[$s] // empty' package.json >/dev/null; }[0m
+build	Build, check and pack	2026-10-28T09:52:21.7232413Z [36;1m    if has build; then bun run build; fi[0m
+build	Build, check and pack	2026-10-28T09:52:21.7232793Z [36;1m    if has check:package; then bun run check:package; fi[0m
+build	Build, check and pack	2026-10-28T09:52:21.7233263Z [36;1m    # bun rewrites workspace: ranges to real versions; npm pack would not.[0m
+build	Build, check and pack	2026-10-28T09:52:21.7233807Z [36;1m    bun pm pack --ignore-scripts --quiet --filename "$RUNNER_TEMP/out/$file"[0m
+build	Build, check and pack	2026-10-28T09:52:21.7234242Z [36;1m  )[0m
+build	Build, check and pack	2026-10-28T09:52:21.7234640Z [36;1m  printf '%s\t%s\t%s\t%s\n' "$file" "$name" "$version" "$tag" >> "$RUNNER_TEMP/out/plan.tsv"[0m
+build	Build, check and pack	2026-10-28T09:52:21.7235077Z [36;1m  echo "::endgroup::"[0m
+build	Build, check and pack	2026-10-28T09:52:21.7235345Z [36;1mdone < plan.tsv[0m
+build	Build, check and pack	2026-10-28T09:52:21.7302605Z shell: /usr/bin/bash -e {0}
+build	Build, check and pack	2026-10-28T09:52:21.7302925Z ##[endgroup]
+build	Build, check and pack	2026-10-28T09:52:21.7423524Z ##[group]@absolutejs/diagnostics@0.5.0
+build	Build, check and pack	2026-10-28T09:52:21.7496717Z $ rm -rf dist && bun build src/index.ts src/run.ts src/worker.ts src/browser.ts src/har.ts src/redact.ts src/support.ts src/trace.ts src/ui.ts src/viewer.ts --outdir dist --root ./src --splitting --sourcemap --target=browser && bun build src/playwright.ts src/elysia.ts src/blob.ts src/manifest.ts --outdir dist --root ./src --splitting --sourcemap --target=bun --external playwright --external elysia --external @absolutejs/manifest --external '@absolutejs/manifest/*' --external @sinclair/typebox --external '@sinclair/typebox/*' && tsc --project tsconfig.build.json && absolute-manifest emit
+build	Build, check and pack	2026-10-28T09:52:21.7589120Z Bundled 11 modules in 5ms
+build	Build, check and pack	2026-10-28T09:52:21.7589491Z 
+build	Build, check and pack	2026-10-28T09:52:21.7589780Z   index.js                1.70 KB    (entry point)
+build	Build, check and pack	2026-10-28T09:52:21.7590544Z   index-r62cf5s1.js       18.0 KB    (chunk)
+build	Build, check and pack	2026-10-28T09:52:21.7591409Z   index-y4qd4srj.js       3.86 KB    (chunk)
+build	Build, check and pack	2026-10-28T09:52:21.7591943Z   index-qmpxx8gk.js       245 bytes  (chunk)
+build	Build, check and pack	2026-10-28T09:52:21.7592461Z   index-8dbg29n3.js       3.67 KB    (chunk)
+build	Build, check and pack	2026-10-28T09:52:21.7592978Z   index-3yaya2wy.js       2.0 KB     (chunk)
+build	Build, check and pack	2026-10-28T09:52:21.7593490Z   index-k7qwca5c.js       13.94 KB   (chunk)
+build	Build, check and pack	2026-10-28T09:52:21.7594079Z   ui.js                   11.59 KB   (entry point)
+build	Build, check and pack	2026-10-28T09:52:21.7594629Z   viewer.js               5.58 KB    (entry point)
+build	Build, check and pack	2026-10-28T09:52:21.7595063Z   run.js                  2.20 KB    (entry point)
+build	Build, check and pack	2026-10-28T09:52:21.7595423Z   worker.js               4.73 KB    (entry point)
+build	Build, check and pack	2026-10-28T09:52:21.7595804Z   browser.js              304 bytes  (entry point)
+build	Build, check and pack	2026-10-28T09:52:21.7596176Z   har.js                  393 bytes  (entry point)
+build	Build, check and pack	2026-10-28T09:52:21.7596517Z   redact.js               0.66 KB    (entry point)
+build	Build, check and pack	2026-10-28T09:52:21.7596884Z   support.js              417 bytes  (entry point)
+build	Build, check and pack	2026-10-28T09:52:21.7597258Z   trace.js                285 bytes  (entry point)
+build	Build, check and pack	2026-10-28T09:52:21.7597612Z   index.js.map            144 bytes  (source map)
+build	Build, check and pack	2026-10-28T09:52:21.7598080Z   index-r62cf5s1.js.map   35.63 KB   (source map)
+build	Build, check and pack	2026-10-28T09:52:21.7598442Z   index-y4qd4srj.js.map   7.59 KB    (source map)
+build	Build, check and pack	2026-10-28T09:52:21.7598796Z   index-qmpxx8gk.js.map   3.99 KB    (source map)
+build	Build, check and pack	2026-10-28T09:52:21.7599150Z   index-8dbg29n3.js.map   8.49 KB    (source map)
+build	Build, check and pack	2026-10-28T09:52:21.7599497Z   index-3yaya2wy.js.map   3.92 KB    (source map)
+build	Build, check and pack	2026-10-28T09:52:21.7599840Z   index-k7qwca5c.js.map   27.60 KB   (source map)
+build	Build, check and pack	2026-10-28T09:52:21.7600383Z   ui.js.map               22.43 KB   (source map)
+build	Build, check and pack	2026-10-28T09:52:21.7600927Z   viewer.js.map           10.72 KB   (source map)
+build	Build, check and pack	2026-10-28T09:52:21.7601276Z   run.js.map              4.84 KB    (source map)
+build	Build, check and pack	2026-10-28T09:52:21.7601638Z   worker.js.map           10.42 KB   (source map)
+build	Build, check and pack	2026-10-28T09:52:21.7601986Z   browser.js.map          144 bytes  (source map)
+build	Build, check and pack	2026-10-28T09:52:21.7602331Z   har.js.map              144 bytes  (source map)
+build	Build, check and pack	2026-10-28T09:52:21.7602687Z   redact.js.map           144 bytes  (source map)
+build	Build, check and pack	2026-10-28T09:52:21.7603031Z   support.js.map          144 bytes  (source map)
+build	Build, check and pack	2026-10-28T09:52:21.7603384Z   trace.js.map            144 bytes  (source map)
+build	Build, check and pack	2026-10-28T09:52:21.7603592Z 
+build	Build, check and pack	2026-10-28T09:52:21.7658957Z Bundled 9 modules in 4ms
+build	Build, check and pack	2026-10-28T09:52:21.7659567Z 
+build	Build, check and pack	2026-10-28T09:52:21.7659956Z   playwright.js                5.68 KB   (entry point)
+build	Build, check and pack	2026-10-28T09:52:21.7660898Z   playwright-fz0ywq8f.js       13.85 KB  (chunk)
+build	Build, check and pack	2026-10-28T09:52:21.7661544Z   elysia.js                    16.56 KB  (entry point)
+build	Build, check and pack	2026-10-28T09:52:21.7662255Z   blob.js                      4.1 KB    (entry point)
+build	Build, check and pack	2026-10-28T09:52:21.7662860Z   manifest.js                  3.19 KB   (entry point)
+build	Build, check and pack	2026-10-28T09:52:21.7663654Z   playwright.js.map            12.35 KB  (source map)
+build	Build, check and pack	2026-10-28T09:52:21.7664379Z   playwright-fz0ywq8f.js.map   27.60 KB  (source map)
+build	Build, check and pack	2026-10-28T09:52:21.7665156Z   elysia.js.map                42.81 KB  (source map)
+build	Build, check and pack	2026-10-28T09:52:21.7665816Z   blob.js.map                  9.32 KB   (source map)
+build	Build, check and pack	2026-10-28T09:52:21.7666475Z   manifest.js.map              5.1 KB    (source map)
+build	Build, check and pack	2026-10-28T09:52:21.7666886Z 
+build	Build, check and pack	2026-10-28T09:52:24.1057874Z absolute-manifest: wrote /home/runner/work/diagnostics/diagnostics/dist/manifest.json
+build	Build, check and pack	2026-10-28T09:52:24.1154140Z $ bun run format && bun run typecheck && bun run test && bun run verify-package && bun run build && bun scripts/check-run-package.ts && bun scripts/check-worker-package.ts && absolute-changelog check
+build	Build, check and pack	2026-10-28T09:52:24.1185347Z $ prettier --write "./**/*.{ts,json,md}"
+build	Build, check and pack	2026-10-28T09:52:24.2758647Z [90mpackage.json[39m 34ms (unchanged)
+build	Build, check and pack	2026-10-28T09:52:24.5056252Z [90mREADME.md[39m 227ms (unchanged)
+build	Build, check and pack	2026-10-28T09:52:24.5151158Z [90mresearch/worker-channel-2026-10-28/archive-audit.json[39m 4ms (unchanged)
+build	Build, check and pack	2026-10-28T09:52:24.5184661Z [90mresearch/worker-channel-2026-10-28/browser-result.json[39m 2ms (unchanged)
+build	Build, check and pack	2026-10-28T09:52:24.5363450Z [90mresearch/worker-channel-2026-10-28/pack.json[39m 16ms (unchanged)
+build	Build, check and pack	2026-10-28T09:52:24.5519532Z [90mresearch/worker-channel-2026-10-28/README.md[39m 13ms (unchanged)
+build	Build, check and pack	2026-10-28T09:52:24.5631647Z [90mscripts/check-run-package.ts[39m 6ms (unchanged)
+build	Build, check and pack	2026-10-28T09:52:24.5864003Z [90mscripts/check-worker-browser.ts[39m 22ms (unchanged)
+build	Build, check and pack	2026-10-28T09:52:24.5942200Z [90mscripts/check-worker-package.ts[39m 4ms (unchanged)
+build	Build, check and pack	2026-10-28T09:52:24.6271563Z [90msrc/blob.ts[39m 29ms (unchanged)
+build	Build, check and pack	2026-10-28T09:52:24.7065935Z [90msrc/browser.ts[39m 78ms (unchanged)
+build	Build, check and pack	2026-10-28T09:52:24.7199207Z [90msrc/contracts.ts[39m 10ms (unchanged)
+build	Build, check and pack	2026-10-28T09:52:24.7614228Z [90msrc/elysia.ts[39m 40ms (unchanged)
+build	Build, check and pack	2026-10-28T09:52:24.7802579Z [90msrc/har.ts[39m 16ms (unchanged)
+build	Build, check and pack	2026-10-28T09:52:24.7866131Z [90msrc/index.ts[39m 1ms (unchanged)
+build	Build, check and pack	2026-10-28T09:52:24.7927814Z [90msrc/manifest.ts[39m 5ms (unchanged)
+build	Build, check and pack	2026-10-28T09:52:24.8112279Z [90msrc/playwright.ts[39m 17ms (unchanged)
+build	Build, check and pack	2026-10-28T09:52:24.8599416Z [90msrc/redact.ts[39m 45ms (unchanged)
+build	Build, check and pack	2026-10-28T09:52:24.8811910Z [90msrc/run.ts[39m 11ms (unchanged)
+build	Build, check and pack	2026-10-28T09:52:24.8986577Z [90msrc/support.ts[39m 16ms (unchanged)
+build	Build, check and pack	2026-10-28T09:52:24.9095002Z [90msrc/trace.ts[39m 9ms (unchanged)
+build	Build, check and pack	2026-10-28T09:52:24.9524991Z [90msrc/ui.ts[39m 41ms (unchanged)
+build	Build, check and pack	2026-10-28T09:52:24.9770438Z [90msrc/viewer.ts[39m 23ms (unchanged)
+build	Build, check and pack	2026-10-28T09:52:24.9936197Z [90msrc/worker.ts[39m 12ms (unchanged)
+build	Build, check and pack	2026-10-28T09:52:25.0008157Z [90mtests/blob.test.ts[39m 5ms (unchanged)
+build	Build, check and pack	2026-10-28T09:52:25.0083109Z [90mtests/browser.test.ts[39m 6ms (unchanged)
+build	Build, check and pack	2026-10-28T09:52:25.0246002Z [90mtests/elysia.test.ts[39m 15ms (unchanged)
+build	Build, check and pack	2026-10-28T09:52:25.0331379Z [90mtests/fixtures.ts[39m 5ms (unchanged)
+build	Build, check and pack	2026-10-28T09:52:25.0356980Z [90mtests/manifest.test.ts[39m 2ms (unchanged)
+build	Build, check and pack	2026-10-28T09:52:25.0525327Z [90mtests/redact.test.ts[39m 16ms (unchanged)
+build	Build, check and pack	2026-10-28T09:52:25.0669262Z [90mtests/run.test.ts[39m 7ms (unchanged)
+build	Build, check and pack	2026-10-28T09:52:25.0772637Z [90mtests/support.test.ts[39m 9ms (unchanged)
+build	Build, check and pack	2026-10-28T09:52:25.0799918Z [90mtests/trace.test.ts[39m 2ms (unchanged)
+build	Build, check and pack	2026-10-28T09:52:25.1002144Z [90mtests/worker.test.ts[39m 18ms (unchanged)
+build	Build, check and pack	2026-10-28T09:52:25.1026572Z [90mtsconfig.build.json[39m 2ms (unchanged)
+build	Build, check and pack	2026-10-28T09:52:25.1053453Z [90mtsconfig.json[39m 1ms (unchanged)
+build	Build, check and pack	2026-10-28T09:52:25.1318890Z $ tsc --noEmit
+build	Build, check and pack	2026-10-28T09:52:27.4754857Z $ bun test
+build	Build, check and pack	2026-10-28T09:52:27.4779762Z bun test v1.4.2 (744846f84)
+build	Build, check and pack	2026-10-28T09:52:27.4805670Z 
+build	Build, check and pack	2026-10-28T09:52:27.4806428Z ##[group]tests/worker.test.ts:
+build	Build, check and pack	2026-10-28T09:52:27.4857145Z (pass) worker frames are redacted, correlated, owned, and ignore ordinary task results [1.29ms]
+build	Build, check and pack	2026-10-28T09:52:27.4858465Z (pass) message attempts are bounded even when producer fields are invalid [0.11ms]
+build	Build, check and pack	2026-10-28T09:52:27.4863299Z (pass) UTF-8 byte limits and aggregate limits apply before callback delivery [0.55ms]
+build	Build, check and pack	2026-10-28T09:52:27.4866560Z (pass) callbacks and serialization errors are accounted without escaping into computation [0.31ms]
+build	Build, check and pack	2026-10-28T09:52:27.4868165Z (pass) receiver rejects malformed data before JSON parsing and enforces its own budget [0.17ms]
+build	Build, check and pack	2026-10-28T09:52:27.4872211Z (pass) loss, stale ordering, close and callback reentrancy have explicit bounded accounting [0.36ms]
+build	Build, check and pack	2026-10-28T09:52:27.4873552Z (pass) receiver redacts a producer that bypassed the reporter [0.16ms]
+build	Build, check and pack	2026-10-28T09:52:27.4875720Z (pass) invalid configuration is rejected without sending or receiving [0.26ms]
+build	Build, check and pack	2026-10-28T09:52:27.4876730Z (pass) channel identity and callbacks are captured rather than following mutable options [0.07ms]
+build	Build, check and pack	2026-10-28T09:52:27.4877135Z 
+build	Build, check and pack	2026-10-28T09:52:27.4877570Z ##[endgroup]
+build	Build, check and pack	2026-10-28T09:52:27.4877834Z 
+build	Build, check and pack	2026-10-28T09:52:27.4878420Z ##[group]tests/redact.test.ts:
+build	Build, check and pack	2026-10-28T09:52:27.4907436Z (pass) diagnostic redaction > removes credentials, payment data, card numbers, and query values [1.69ms]
+build	Build, check and pack	2026-10-28T09:52:27.4908772Z (pass) diagnostic redaction > removes every query value unless explicitly safe [0.15ms]
+build	Build, check and pack	2026-10-28T09:52:27.4918700Z (pass) diagnostic redaction > exports a parseable, audited HAR 1.2 document [0.98ms]
+build	Build, check and pack	2026-10-28T09:52:27.4926342Z (pass) diagnostic redaction > redacts a true DevTools HAR without flattening timings [0.76ms]
+build	Build, check and pack	2026-10-28T09:52:27.4927568Z (pass) diagnostic redaction > rejects unredacted authorization data [0.11ms]
+build	Build, check and pack	2026-10-28T09:52:27.4928748Z (pass) diagnostic redaction > audits header order and HAR cookie arrays structurally [0.13ms]
+build	Build, check and pack	2026-10-28T09:52:27.4931287Z (pass) diagnostic redaction > redacts valid payment card numbers but permits epoch timestamps [0.23ms]
+build	Build, check and pack	2026-10-28T09:52:27.4932789Z (pass) diagnostic redaction > does not read a decimal fraction as a payment card number [0.16ms]
+build	Build, check and pack	2026-10-28T09:52:27.4933933Z (pass) diagnostic redaction > still catches a card number that follows a decimal number [0.10ms]
+build	Build, check and pack	2026-10-28T09:52:27.4934325Z 
+build	Build, check and pack	2026-10-28T09:52:27.4934713Z ##[endgroup]
+build	Build, check and pack	2026-10-28T09:52:27.4934851Z 
+build	Build, check and pack	2026-10-28T09:52:27.4935120Z ##[group]tests/run.test.ts:
+build	Build, check and pack	2026-10-28T09:52:27.4943740Z (pass) success stays provisional until an observed zero exit, with immutable snapshots [0.25ms]
+build	Build, check and pack	2026-10-28T09:52:27.4944675Z (pass) late exit %s / %s invalidates success [0.06ms]
+build	Build, check and pack	2026-10-28T09:52:27.4945471Z (pass) late exit %s / SIGTERM invalidates success [0.03ms]
+build	Build, check and pack	2026-10-28T09:52:27.4945932Z (pass) late exit %s / SIGINT invalidates success [0.02ms]
+build	Build, check and pack	2026-10-28T09:52:27.4946680Z (pass) early zero exit is incomplete and failure/source invalidation cannot be erased [0.09ms]
+build	Build, check and pack	2026-10-28T09:52:27.4947730Z (pass) rejects invalid host evidence without mutating state and bounds error text [0.15ms]
+build	Build, check and pack	2026-10-28T09:52:27.4948561Z 
+build	Build, check and pack	2026-10-28T09:52:27.4949254Z ##[endgroup]
+build	Build, check and pack	2026-10-28T09:52:27.4949395Z 
+build	Build, check and pack	2026-10-28T09:52:27.4949681Z ##[group]tests/trace.test.ts:
+build	Build, check and pack	2026-10-28T09:52:27.4958163Z (pass) diagnostic trace correlation > parses valid W3C traceparent and rejects invalid identifiers [0.10ms]
+build	Build, check and pack	2026-10-28T09:52:27.4959322Z (pass) diagnostic trace correlation > parses bounded Server-Timing metrics [0.27ms]
+build	Build, check and pack	2026-10-28T09:52:27.4959911Z 
+build	Build, check and pack	2026-10-28T09:52:27.4960571Z ##[endgroup]
+build	Build, check and pack	2026-10-28T09:52:27.4960773Z 
+build	Build, check and pack	2026-10-28T09:52:27.4961301Z ##[group]tests/manifest.test.ts:
+build	Build, check and pack	2026-10-28T09:52:27.5894551Z (pass) declares an opt-in observability manifest [0.03ms]
+build	Build, check and pack	2026-10-28T09:52:27.5895093Z 
+build	Build, check and pack	2026-10-28T09:52:27.5895871Z ##[endgroup]
+build	Build, check and pack	2026-10-28T09:52:27.5896073Z 
+build	Build, check and pack	2026-10-28T09:52:27.5896521Z ##[group]tests/support.test.ts:
+build	Build, check and pack	2026-10-28T09:52:27.7051149Z (pass) support bundles > correlates and redacts one audited artifact [1.05ms]
+build	Build, check and pack	2026-10-28T09:52:27.7085396Z (pass) support bundles > runs an explicit record-review-send state machine [3.48ms]
+build	Build, check and pack	2026-10-28T09:52:27.7095620Z (pass) support bundles > compares successful and failed support captures [1.05ms]
+build	Build, check and pack	2026-10-28T09:52:27.7247208Z (pass) support bundles > connects an accessible native report element [15.09ms]
+build	Build, check and pack	2026-10-28T09:52:27.7269792Z 
+build	Build, check and pack	2026-10-28T09:52:27.7271388Z ##[endgroup]
+build	Build, check and pack	2026-10-28T09:52:27.7271586Z 
+build	Build, check and pack	2026-10-28T09:52:27.7272177Z ##[group]tests/elysia.test.ts:
+build	Build, check and pack	2026-10-28T09:52:27.7585456Z (pass) diagnostics Elysia relay > exposes bounded request correlation and server timing [9.90ms]
+build	Build, check and pack	2026-10-28T09:52:27.7702949Z (pass) diagnostics Elysia relay > defaults closed [11.78ms]
+build	Build, check and pack	2026-10-28T09:52:27.7733920Z (pass) diagnostics Elysia relay > redacts again before storing and retrieves authorized captures [3.11ms]
+build	Build, check and pack	2026-10-28T09:52:27.7758395Z (pass) diagnostics Elysia relay > issues short-lived signed downloads and supports explicit deletion [2.43ms]
+build	Build, check and pack	2026-10-28T09:52:27.7758882Z 
+build	Build, check and pack	2026-10-28T09:52:27.7760061Z ##[endgroup]
+build	Build, check and pack	2026-10-28T09:52:27.7760433Z 
+build	Build, check and pack	2026-10-28T09:52:27.7760837Z ##[group]tests/blob.test.ts:
+build	Build, check and pack	2026-10-28T09:52:27.7781440Z (pass) diagnostic blob capture lifecycle > enforces expiry, download limits, and idempotent deletion [1.08ms]
+build	Build, check and pack	2026-10-28T09:52:27.7782243Z 
+build	Build, check and pack	2026-10-28T09:52:27.7782766Z ##[endgroup]
+build	Build, check and pack	2026-10-28T09:52:27.7782983Z 
+build	Build, check and pack	2026-10-28T09:52:27.7783432Z ##[group]tests/browser.test.ts:
+build	Build, check and pack	2026-10-28T09:52:27.7831218Z (pass) browser diagnostics > is explicitly started, bounded, and redacts before retaining bodies [2.74ms]
+build	Build, check and pack	2026-10-28T09:52:27.7847321Z 
+build	Build, check and pack	2026-10-28T09:52:27.7848956Z ##[endgroup]
+build	Build, check and pack	2026-10-28T09:52:27.7849184Z 
+build	Build, check and pack	2026-10-28T09:52:27.7849348Z  37 pass
+build	Build, check and pack	2026-10-28T09:52:27.7849667Z  0 fail
+build	Build, check and pack	2026-10-28T09:52:27.7850001Z  175 expect() calls
+build	Build, check and pack	2026-10-28T09:52:27.7850687Z Ran 37 tests across 9 files. [306.00ms]
+build	Build, check and pack	2026-10-28T09:52:27.7933329Z $ absolute-manifest verify-package
+build	Build, check and pack	2026-10-28T09:52:27.8896239Z absolute-manifest: peer dependencies valid in /home/runner/work/diagnostics/diagnostics
+build	Build, check and pack	2026-10-28T09:52:27.8952923Z $ rm -rf dist && bun build src/index.ts src/run.ts src/worker.ts src/browser.ts src/har.ts src/redact.ts src/support.ts src/trace.ts src/ui.ts src/viewer.ts --outdir dist --root ./src --splitting --sourcemap --target=browser && bun build src/playwright.ts src/elysia.ts src/blob.ts src/manifest.ts --outdir dist --root ./src --splitting --sourcemap --target=bun --external playwright --external elysia --external @absolutejs/manifest --external '@absolutejs/manifest/*' --external @sinclair/typebox --external '@sinclair/typebox/*' && tsc --project tsconfig.build.json && absolute-manifest emit
+build	Build, check and pack	2026-10-28T09:52:27.9063390Z Bundled 11 modules in 5ms
+build	Build, check and pack	2026-10-28T09:52:27.9063987Z 
+build	Build, check and pack	2026-10-28T09:52:27.9064613Z   index.js                1.70 KB    (entry point)
+build	Build, check and pack	2026-10-28T09:52:27.9065172Z   index-r62cf5s1.js       18.0 KB    (chunk)
+build	Build, check and pack	2026-10-28T09:52:27.9065658Z   index-y4qd4srj.js       3.86 KB    (chunk)
+build	Build, check and pack	2026-10-28T09:52:27.9066142Z   index-qmpxx8gk.js       245 bytes  (chunk)
+build	Build, check and pack	2026-10-28T09:52:27.9066596Z   index-8dbg29n3.js       3.67 KB    (chunk)
+build	Build, check and pack	2026-10-28T09:52:27.9067048Z   index-3yaya2wy.js       2.0 KB     (chunk)
+build	Build, check and pack	2026-10-28T09:52:27.9067829Z   index-k7qwca5c.js       13.94 KB   (chunk)
+build	Build, check and pack	2026-10-28T09:52:27.9068308Z   ui.js                   11.59 KB   (entry point)
+build	Build, check and pack	2026-10-28T09:52:27.9068773Z   viewer.js               5.58 KB    (entry point)
+build	Build, check and pack	2026-10-28T09:52:27.9069184Z   run.js                  2.20 KB    (entry point)
+build	Build, check and pack	2026-10-28T09:52:27.9069545Z   worker.js               4.73 KB    (entry point)
+build	Build, check and pack	2026-10-28T09:52:27.9069889Z   browser.js              304 bytes  (entry point)
+build	Build, check and pack	2026-10-28T09:52:27.9070476Z   har.js                  393 bytes  (entry point)
+build	Build, check and pack	2026-10-28T09:52:27.9070837Z   redact.js               0.66 KB    (entry point)
+build	Build, check and pack	2026-10-28T09:52:27.9071189Z   support.js              417 bytes  (entry point)
+build	Build, check and pack	2026-10-28T09:52:27.9071544Z   trace.js                285 bytes  (entry point)
+build	Build, check and pack	2026-10-28T09:52:27.9071891Z   index.js.map            144 bytes  (source map)
+build	Build, check and pack	2026-10-28T09:52:27.9072475Z   index-r62cf5s1.js.map   35.63 KB   (source map)
+build	Build, check and pack	2026-10-28T09:52:27.9073062Z   index-y4qd4srj.js.map   7.59 KB    (source map)
+build	Build, check and pack	2026-10-28T09:52:27.9073664Z   index-qmpxx8gk.js.map   3.99 KB    (source map)
+build	Build, check and pack	2026-10-28T09:52:27.9074227Z   index-8dbg29n3.js.map   8.49 KB    (source map)
+build	Build, check and pack	2026-10-28T09:52:27.9074716Z   index-3yaya2wy.js.map   3.92 KB    (source map)
+build	Build, check and pack	2026-10-28T09:52:27.9075075Z   index-k7qwca5c.js.map   27.60 KB   (source map)
+build	Build, check and pack	2026-10-28T09:52:27.9075432Z   ui.js.map               22.43 KB   (source map)
+build	Build, check and pack	2026-10-28T09:52:27.9075782Z   viewer.js.map           10.72 KB   (source map)
+build	Build, check and pack	2026-10-28T09:52:27.9076119Z   run.js.map              4.84 KB    (source map)
+build	Build, check and pack	2026-10-28T09:52:27.9076455Z   worker.js.map           10.42 KB   (source map)
+build	Build, check and pack	2026-10-28T09:52:27.9076800Z   browser.js.map          144 bytes  (source map)
+build	Build, check and pack	2026-10-28T09:52:27.9077134Z   har.js.map              144 bytes  (source map)
+build	Build, check and pack	2026-10-28T09:52:27.9077492Z   redact.js.map           144 bytes  (source map)
+build	Build, check and pack	2026-10-28T09:52:27.9077852Z   support.js.map          144 bytes  (source map)
+build	Build, check and pack	2026-10-28T09:52:27.9078199Z   trace.js.map            144 bytes  (source map)
+build	Build, check and pack	2026-10-28T09:52:27.9078412Z 
+build	Build, check and pack	2026-10-28T09:52:27.9130915Z Bundled 9 modules in 4ms
+build	Build, check and pack	2026-10-28T09:52:27.9131954Z 
+build	Build, check and pack	2026-10-28T09:52:27.9132421Z   playwright.js                5.68 KB   (entry point)
+build	Build, check and pack	2026-10-28T09:52:27.9133092Z   playwright-fz0ywq8f.js       13.85 KB  (chunk)
+build	Build, check and pack	2026-10-28T09:52:27.9133533Z   elysia.js                    16.56 KB  (entry point)
+build	Build, check and pack	2026-10-28T09:52:27.9134234Z   blob.js                      4.1 KB    (entry point)
+build	Build, check and pack	2026-10-28T09:52:27.9134614Z   manifest.js                  3.19 KB   (entry point)
+build	Build, check and pack	2026-10-28T09:52:27.9135013Z   playwright.js.map            12.35 KB  (source map)
+build	Build, check and pack	2026-10-28T09:52:27.9135406Z   playwright-fz0ywq8f.js.map   27.60 KB  (source map)
+build	Build, check and pack	2026-10-28T09:52:27.9135784Z   elysia.js.map                42.81 KB  (source map)
+build	Build, check and pack	2026-10-28T09:52:27.9136135Z   blob.js.map                  9.32 KB   (source map)
+build	Build, check and pack	2026-10-28T09:52:27.9136485Z   manifest.js.map              5.1 KB    (source map)
+build	Build, check and pack	2026-10-28T09:52:27.9136700Z 
+build	Build, check and pack	2026-10-28T09:52:30.1092270Z absolute-manifest: wrote /home/runner/work/diagnostics/diagnostics/dist/manifest.json
+build	Build, check and pack	2026-10-28T09:52:30.1201165Z Published run subpath: clean exit, late failure and source invalidation pass
+build	Build, check and pack	2026-10-28T09:52:30.1296494Z Published worker subpath redacts and delivers a bounded owned record
+build	Build, check and pack	2026-10-28T09:52:31.0370472Z @absolutejs/diagnostics@0.5.0: changelog holds (0 pending, 3 released)
+build	Build, check and pack	2026-10-28T09:52:31.0614885Z /home/runner/work/_temp/out/absolutejs-diagnostics-0.5.0.tgz
+build	Build, check and pack	2026-10-28T09:52:31.0622183Z ##[endgroup]
+build	Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9	﻿2026-10-28T09:52:31.0705969Z ##[group]Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+build	Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9	2026-10-28T09:52:31.0706408Z with:
+build	Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9	2026-10-28T09:52:31.0706632Z   name: packages
+build	Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9	2026-10-28T09:52:31.0706878Z   path: /home/runner/work/_temp/out
+build	Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9	2026-10-28T09:52:31.0707161Z   retention-days: 7
+build	Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9	2026-10-28T09:52:31.0707398Z   if-no-files-found: warn
+build	Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9	2026-10-28T09:52:31.0707660Z   compression-level: 6
+build	Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9	2026-10-28T09:52:31.0707893Z   overwrite: false
+build	Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9	2026-10-28T09:52:31.0708126Z   include-hidden-files: false
+build	Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9	2026-10-28T09:52:31.0708378Z   archive: true
+build	Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9	2026-10-28T09:52:31.0708604Z ##[endgroup]
+build	Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9	2026-10-28T09:52:31.2146668Z With the provided path, there will be 2 files uploaded
+build	Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9	2026-10-28T09:52:31.2151121Z Artifact name is valid!
+build	Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9	2026-10-28T09:52:31.2151698Z Root directory input is valid!
+build	Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9	2026-10-28T09:52:31.5559803Z Uploading artifact: packages.zip
+build	Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9	2026-10-28T09:52:31.5595699Z Beginning upload of artifact content to blob storage
+build	Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9	2026-10-28T09:52:31.8937134Z Uploaded bytes 97434
+build	Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9	2026-10-28T09:52:31.9522318Z Finished uploading artifact content to blob storage!
+build	Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9	2026-10-28T09:52:31.9523868Z SHA256 digest of uploaded artifact is 0fb54d2e44058d6558f59544b28a6d41460f2158ddc2dfeffdcd2079f8b41edb
+build	Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9	2026-10-28T09:52:31.9524761Z Finalizing artifact upload
+build	Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9	2026-10-28T09:52:32.5764888Z Artifact packages successfully finalized. Artifact ID 12805879909
+build	Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9	2026-10-28T09:52:32.5766318Z Artifact packages has been successfully uploaded! Final size is 97434 bytes. Artifact ID is 12805879909
+build	Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9	2026-10-28T09:52:32.5769887Z Artifact download URL: https://github.com/absolutejs/diagnostics/actions/runs/40667603434/artifacts/12805879909
+build	Post Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1	﻿2026-10-28T09:52:32.5945961Z Post job cleanup.
+build	Post Run oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6	﻿2026-10-28T09:52:32.7236441Z Post job cleanup.
+build	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	﻿2026-10-28T09:52:32.9054851Z Post job cleanup.
+build	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-28T09:52:32.9935119Z [command]/usr/bin/git version
+build	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-28T09:52:33.0005929Z git version 2.55.0
+build	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-28T09:52:33.0040021Z Temporarily overriding HOME='/home/runner/work/_temp/91d13f96-f878-4c28-a914-7043ad9c43c3' before making global git config changes
+build	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-28T09:52:33.0041617Z Adding repository directory to the temporary git global config as a safe directory
+build	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-28T09:52:33.0045022Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/diagnostics/diagnostics
+build	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-28T09:52:33.0078018Z Removing SSH command configuration
+build	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-28T09:52:33.0084629Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+build	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-28T09:52:33.0121039Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+build	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-28T09:52:33.0357644Z Removing HTTP extra header
+build	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-28T09:52:33.0363191Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+build	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-28T09:52:33.0399096Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+build	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-28T09:52:33.0628602Z Removing includeIf entries pointing to credentials config files
+build	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-28T09:52:33.0636164Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+build	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-28T09:52:33.0669623Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+build	Complete job	﻿2026-10-28T09:52:33.1042935Z Evaluate and set job outputs
+build	Complete job	2026-10-28T09:52:33.1047945Z Set output 'pending'
+build	Complete job	2026-10-28T09:52:33.1049814Z Cleaning up orphan processes
+publish	Set up job	﻿2026-10-28T09:52:41.3874471Z Current runner version: '2.338.0'
+publish	Set up job	2026-10-28T09:52:41.3904244Z ##[group]Runner Image Provisioner
+publish	Set up job	2026-10-28T09:52:41.3905526Z Hosted Compute Agent
+publish	Set up job	2026-10-28T09:52:41.3906376Z Version: 20261021.618
+publish	Set up job	2026-10-28T09:52:41.3907034Z Commit: 21505ad2541d5be6135ed84fc33697146cf75b8e
+publish	Set up job	2026-10-28T09:52:41.3907754Z Build Date: 2026-10-21T00:45:21Z
+publish	Set up job	2026-10-28T09:52:41.3908562Z Worker ID: {8abce4ca-8be3-4c70-965e-4d6a1547c1f9}
+publish	Set up job	2026-10-28T09:52:41.3909311Z Region: northcentralus
+publish	Set up job	2026-10-28T09:52:41.3909935Z Cloud: Azure
+publish	Set up job	2026-10-28T09:52:41.3910557Z ##[endgroup]
+publish	Set up job	2026-10-28T09:52:41.3912094Z ##[group]Operating System
+publish	Set up job	2026-10-28T09:52:41.3912895Z Ubuntu
+publish	Set up job	2026-10-28T09:52:41.3913446Z 24.04.5
+publish	Set up job	2026-10-28T09:52:41.3914005Z LTS
+publish	Set up job	2026-10-28T09:52:41.3914564Z ##[endgroup]
+publish	Set up job	2026-10-28T09:52:41.3915478Z ##[group]Runner Image
+publish	Set up job	2026-10-28T09:52:41.3916710Z Image: ubuntu-24.04
+publish	Set up job	2026-10-28T09:52:41.3917322Z Version: 20261025.353.1
+publish	Set up job	2026-10-28T09:52:41.3918397Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261025.353/images/ubuntu/Ubuntu2404-Readme.md
+publish	Set up job	2026-10-28T09:52:41.3920304Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261025.353
+publish	Set up job	2026-10-28T09:52:41.3921429Z ##[endgroup]
+publish	Set up job	2026-10-28T09:52:41.3922574Z ##[group]GITHUB_TOKEN Permissions
+publish	Set up job	2026-10-28T09:52:41.3924907Z Contents: read
+publish	Set up job	2026-10-28T09:52:41.3926093Z Metadata: read
+publish	Set up job	2026-10-28T09:52:41.3926795Z ##[endgroup]
+publish	Set up job	2026-10-28T09:52:41.3929425Z Secret source: Actions
+publish	Set up job	2026-10-28T09:52:41.3930397Z Cache mode: write
+publish	Set up job	2026-10-28T09:52:41.3931421Z Prepare workflow directory
+publish	Set up job	2026-10-28T09:52:41.4286346Z Prepare all required actions
+publish	Set up job	2026-10-28T09:52:41.4336483Z Getting action download info
+publish	Set up job	2026-10-28T09:52:41.7108024Z Download action repository 'actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1' (SHA:949feb2413d6458794dcd2491c4babbbce0c15c1)
+publish	Set up job	2026-10-28T09:52:41.8901784Z Download action repository 'actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333' (SHA:9000827ccba6bdab643e8b6fd33ac0654aef8333)
+publish	Set up job	2026-10-28T09:52:42.3327362Z Complete job name: publish
+publish	Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1	﻿2026-10-28T09:52:42.4290910Z ##[group]Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1
+publish	Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1	2026-10-28T09:52:42.4292024Z with:
+publish	Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1	2026-10-28T09:52:42.4292472Z   node-version: 24
+publish	Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1	2026-10-28T09:52:42.4292980Z   registry-url: https://registry.npmjs.org
+publish	Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1	2026-10-28T09:52:42.4293574Z   check-latest: false
+publish	Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1	2026-10-28T09:52:42.4297676Z   token: ***
+publish	Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1	2026-10-28T09:52:42.4298144Z   package-manager-cache: true
+publish	Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1	2026-10-28T09:52:42.4298921Z ##[endgroup]
+publish	Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1	2026-10-28T09:52:42.7925736Z Found in cache @ /opt/hostedtoolcache/node/24.22.1/x64
+publish	Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1	2026-10-28T09:52:42.8797539Z ##[group]Environment details
+publish	Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1	2026-10-28T09:52:43.2891155Z node: v24.22.1
+publish	Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1	2026-10-28T09:52:43.2892578Z npm: 11.19.1
+publish	Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1	2026-10-28T09:52:43.2893565Z yarn: 1.22.22
+publish	Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1	2026-10-28T09:52:43.2895306Z ##[endgroup]
+publish	Run actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333	﻿2026-10-28T09:52:43.3176837Z ##[group]Run actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333
+publish	Run actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333	2026-10-28T09:52:43.3177654Z with:
+publish	Run actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333	2026-10-28T09:52:43.3178075Z   name: packages
+publish	Run actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333	2026-10-28T09:52:43.3178492Z   path: out
+publish	Run actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333	2026-10-28T09:52:43.3178946Z   merge-multiple: false
+publish	Run actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333	2026-10-28T09:52:43.3179415Z   repository: absolutejs/diagnostics
+publish	Run actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333	2026-10-28T09:52:43.3179893Z   run-id: 40667603434
+publish	Run actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333	2026-10-28T09:52:43.3180326Z   skip-decompress: false
+publish	Run actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333	2026-10-28T09:52:43.3180774Z   digest-mismatch: error
+publish	Run actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333	2026-10-28T09:52:43.3181219Z env:
+publish	Run actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333	2026-10-28T09:52:43.3181673Z   NPM_CONFIG_USERCONFIG: /home/runner/work/_temp/.npmrc
+publish	Run actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333	2026-10-28T09:52:43.3182216Z ##[endgroup]
+publish	Run actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333	2026-10-28T09:52:43.4747527Z Downloading single artifact
+publish	Run actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333	2026-10-28T09:52:43.6360184Z Preparing to download the following artifacts:
+publish	Run actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333	2026-10-28T09:52:43.6362939Z - packages (ID: 12805879909, Size: 97434, Expected Digest: sha256:0fb54d2e44058d6558f59544b28a6d41460f2158ddc2dfeffdcd2079f8b41edb)
+publish	Run actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333	2026-10-28T09:52:43.9553371Z Redirecting to blob download url: https://productionresultssa18.blob.core.windows.net/actions-results/8f8e69fb-04b0-8312-9108-ab95129579d5/workflow-job-run-c7d48606-ac51-5628-a569-21539661ffbc/artifacts/b28b1ed9821f38c64524ea13e19264bb0772f8376afffd5d8a1f8277621833eb.zip
+publish	Run actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333	2026-10-28T09:52:43.9557344Z Starting download of artifact to: /home/runner/work/diagnostics/diagnostics/out
+publish	Run actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333	2026-10-28T09:52:44.0998392Z (node:2197) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+publish	Run actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333	2026-10-28T09:52:44.1000794Z (Use `node --trace-deprecation ...` to show where the warning was created)
+publish	Run actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333	2026-10-28T09:52:44.1581494Z SHA256 digest of downloaded artifact is 0fb54d2e44058d6558f59544b28a6d41460f2158ddc2dfeffdcd2079f8b41edb
+publish	Run actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333	2026-10-28T09:52:44.1582754Z Artifact download completed successfully.
+publish	Run actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333	2026-10-28T09:52:44.1583377Z Total of 1 artifact(s) downloaded
+publish	Run actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333	2026-10-28T09:52:44.1585710Z Download artifact has finished successfully
+publish	Publish	﻿2026-10-28T09:52:44.1730081Z ##[group]Run npm --version
+publish	Publish	2026-10-28T09:52:44.1730601Z [36;1mnpm --version[0m
+publish	Publish	2026-10-28T09:52:44.1731031Z [36;1mwhile IFS="$(printf '\t')" read -r file name version tag; do[0m
+publish	Publish	2026-10-28T09:52:44.1731523Z [36;1m  echo "::group::$name@$version"[0m
+publish	Publish	2026-10-28T09:52:44.1732025Z [36;1m  npm publish --ignore-scripts --access public --tag "$tag" "./$file"[0m
+publish	Publish	2026-10-28T09:52:44.1732515Z [36;1m  echo "::endgroup::"[0m
+publish	Publish	2026-10-28T09:52:44.1732834Z [36;1mdone < plan.tsv[0m
+publish	Publish	2026-10-28T09:52:44.1761060Z shell: /usr/bin/bash -e {0}
+publish	Publish	2026-10-28T09:52:44.1761434Z env:
+publish	Publish	2026-10-28T09:52:44.1761763Z   NPM_CONFIG_USERCONFIG: /home/runner/work/_temp/.npmrc
+publish	Publish	2026-10-28T09:52:44.1762162Z ##[endgroup]
+publish	Publish	2026-10-28T09:52:44.2586979Z 11.19.1
+publish	Publish	2026-10-28T09:52:44.2648801Z ##[group]@absolutejs/diagnostics@0.5.0
+publish	Publish	2026-10-28T09:52:45.7856220Z npm notice
+publish	Publish	2026-10-28T09:52:45.8003383Z npm notice 📦  @absolutejs/diagnostics@0.5.0
+publish	Publish	2026-10-28T09:52:45.8004758Z npm notice Tarball Contents
+publish	Publish	2026-10-28T09:52:45.8005662Z npm notice 2.2kB CHANGELOG.md
+publish	Publish	2026-10-28T09:52:45.8006447Z npm notice 2.5kB LICENSE
+publish	Publish	2026-10-28T09:52:45.8006992Z npm notice 15.1kB README.md
+publish	Publish	2026-10-28T09:52:45.8007639Z npm notice 2.8kB changelog.json
+publish	Publish	2026-10-28T09:52:45.8008332Z npm notice 1.6kB dist/blob.d.ts
+publish	Publish	2026-10-28T09:52:45.8008979Z npm notice 1.4kB dist/blob.d.ts.map
+publish	Publish	2026-10-28T09:52:45.8009600Z npm notice 4.1kB dist/blob.js
+publish	Publish	2026-10-28T09:52:45.8010236Z npm notice 9.3kB dist/blob.js.map
+publish	Publish	2026-10-28T09:52:45.8011018Z npm notice 1.3kB dist/browser.d.ts
+publish	Publish	2026-10-28T09:52:45.8011721Z npm notice 1.1kB dist/browser.d.ts.map
+publish	Publish	2026-10-28T09:52:45.8012418Z npm notice 304B dist/browser.js
+publish	Publish	2026-10-28T09:52:45.8013108Z npm notice 144B dist/browser.js.map
+publish	Publish	2026-10-28T09:52:45.8013854Z npm notice 3.8kB dist/contracts.d.ts
+publish	Publish	2026-10-28T09:52:45.8014567Z npm notice 4.0kB dist/contracts.d.ts.map
+publish	Publish	2026-10-28T09:52:45.8015472Z npm notice 7.7kB dist/elysia.d.ts
+publish	Publish	2026-10-28T09:52:45.8016174Z npm notice 2.3kB dist/elysia.d.ts.map
+publish	Publish	2026-10-28T09:52:45.8016843Z npm notice 16.6kB dist/elysia.js
+publish	Publish	2026-10-28T09:52:45.8017530Z npm notice 42.8kB dist/elysia.js.map
+publish	Publish	2026-10-28T09:52:45.8018172Z npm notice 2.2kB dist/har.d.ts
+publish	Publish	2026-10-28T09:52:45.8018876Z npm notice 2.2kB dist/har.d.ts.map
+publish	Publish	2026-10-28T09:52:45.8019551Z npm notice 393B dist/har.js
+publish	Publish	2026-10-28T09:52:45.8020154Z npm notice 144B dist/har.js.map
+publish	Publish	2026-10-28T09:52:45.8020810Z npm notice 2.0kB dist/index-3yaya2wy.js
+publish	Publish	2026-10-28T09:52:45.8021591Z npm notice 3.9kB dist/index-3yaya2wy.js.map
+publish	Publish	2026-10-28T09:52:45.8022325Z npm notice 3.7kB dist/index-8dbg29n3.js
+publish	Publish	2026-10-28T09:52:45.8023052Z npm notice 8.5kB dist/index-8dbg29n3.js.map
+publish	Publish	2026-10-28T09:52:45.8023897Z npm notice 13.9kB dist/index-k7qwca5c.js
+publish	Publish	2026-10-28T09:52:45.8024761Z npm notice 27.6kB dist/index-k7qwca5c.js.map
+publish	Publish	2026-10-28T09:52:45.8025761Z npm notice 245B dist/index-qmpxx8gk.js
+publish	Publish	2026-10-28T09:52:45.8026489Z npm notice 4.0kB dist/index-qmpxx8gk.js.map
+publish	Publish	2026-10-28T09:52:45.8027245Z npm notice 18.0kB dist/index-r62cf5s1.js
+publish	Publish	2026-10-28T09:52:45.8028048Z npm notice 35.6kB dist/index-r62cf5s1.js.map
+publish	Publish	2026-10-28T09:52:45.8028803Z npm notice 3.9kB dist/index-y4qd4srj.js
+publish	Publish	2026-10-28T09:52:45.8029516Z npm notice 7.6kB dist/index-y4qd4srj.js.map
+publish	Publish	2026-10-28T09:52:45.8136543Z npm notice 192B dist/index.d.ts
+publish	Publish	2026-10-28T09:52:45.8138818Z npm notice 228B dist/index.d.ts.map
+publish	Publish	2026-10-28T09:52:45.8139646Z npm notice 1.7kB dist/index.js
+publish	Publish	2026-10-28T09:52:45.8140269Z npm notice 144B dist/index.js.map
+publish	Publish	2026-10-28T09:52:45.8140876Z npm notice 1.0kB dist/manifest.d.ts
+publish	Publish	2026-10-28T09:52:45.8141532Z npm notice 202B dist/manifest.d.ts.map
+publish	Publish	2026-10-28T09:52:45.8142232Z npm notice 3.2kB dist/manifest.js
+publish	Publish	2026-10-28T09:52:45.8142983Z npm notice 5.1kB dist/manifest.js.map
+publish	Publish	2026-10-28T09:52:45.8143639Z npm notice 2.8kB dist/manifest.json
+publish	Publish	2026-10-28T09:52:45.8144345Z npm notice 13.8kB dist/playwright-fz0ywq8f.js
+publish	Publish	2026-10-28T09:52:45.8145547Z npm notice 27.6kB dist/playwright-fz0ywq8f.js.map
+publish	Publish	2026-10-28T09:52:45.8146388Z npm notice 1.4kB dist/playwright.d.ts
+publish	Publish	2026-10-28T09:52:45.8147127Z npm notice 1.3kB dist/playwright.d.ts.map
+publish	Publish	2026-10-28T09:52:45.8148432Z npm notice 5.7kB dist/playwright.js
+publish	Publish	2026-10-28T09:52:45.8149170Z npm notice 12.3kB dist/playwright.js.map
+publish	Publish	2026-10-28T09:52:45.8149890Z npm notice 1.9kB dist/redact.d.ts
+publish	Publish	2026-10-28T09:52:45.8150651Z npm notice 1.3kB dist/redact.d.ts.map
+publish	Publish	2026-10-28T09:52:45.8151391Z npm notice 663B dist/redact.js
+publish	Publish	2026-10-28T09:52:45.8152081Z npm notice 144B dist/redact.js.map
+publish	Publish	2026-10-28T09:52:45.8152760Z npm notice 2.0kB dist/run.d.ts
+publish	Publish	2026-10-28T09:52:45.8153429Z npm notice 996B dist/run.d.ts.map
+publish	Publish	2026-10-28T09:52:45.8154062Z npm notice 2.2kB dist/run.js
+publish	Publish	2026-10-28T09:52:45.8154739Z npm notice 4.8kB dist/run.js.map
+publish	Publish	2026-10-28T09:52:45.8155734Z npm notice 736B dist/support.d.ts
+publish	Publish	2026-10-28T09:52:45.8156455Z npm notice 721B dist/support.d.ts.map
+publish	Publish	2026-10-28T09:52:45.8157202Z npm notice 417B dist/support.js
+publish	Publish	2026-10-28T09:52:45.8157880Z npm notice 144B dist/support.js.map
+publish	Publish	2026-10-28T09:52:45.8158799Z npm notice 347B dist/trace.d.ts
+publish	Publish	2026-10-28T09:52:45.8159564Z npm notice 346B dist/trace.d.ts.map
+publish	Publish	2026-10-28T09:52:45.8160100Z npm notice 285B dist/trace.js
+publish	Publish	2026-10-28T09:52:45.8160542Z npm notice 144B dist/trace.js.map
+publish	Publish	2026-10-28T09:52:45.8161100Z npm notice 2.0kB dist/ui.d.ts
+publish	Publish	2026-10-28T09:52:45.8161483Z npm notice 1.9kB dist/ui.d.ts.map
+publish	Publish	2026-10-28T09:52:45.8161890Z npm notice 11.6kB dist/ui.js
+publish	Publish	2026-10-28T09:52:45.8162270Z npm notice 22.4kB dist/ui.js.map
+publish	Publish	2026-10-28T09:52:45.8162673Z npm notice 1.1kB dist/viewer.d.ts
+publish	Publish	2026-10-28T09:52:45.8163083Z npm notice 1.1kB dist/viewer.d.ts.map
+publish	Publish	2026-10-28T09:52:45.8163484Z npm notice 5.6kB dist/viewer.js
+publish	Publish	2026-10-28T09:52:45.8163879Z npm notice 10.7kB dist/viewer.js.map
+publish	Publish	2026-10-28T09:52:45.8164296Z npm notice 2.5kB dist/worker.d.ts
+publish	Publish	2026-10-28T09:52:45.8164695Z npm notice 1.1kB dist/worker.d.ts.map
+publish	Publish	2026-10-28T09:52:45.8165355Z npm notice 4.7kB dist/worker.js
+publish	Publish	2026-10-28T09:52:45.8165851Z npm notice 10.4kB dist/worker.js.map
+publish	Publish	2026-10-28T09:52:45.8166246Z npm notice 5.1kB package.json
+publish	Publish	2026-10-28T09:52:45.8166604Z npm notice Tarball Details
+publish	Publish	2026-10-28T09:52:45.8167029Z npm notice name: @absolutejs/diagnostics
+publish	Publish	2026-10-28T09:52:45.8167597Z npm notice version: 0.5.0
+publish	Publish	2026-10-28T09:52:45.8168062Z npm notice filename: absolutejs-diagnostics-0.5.0.tgz
+publish	Publish	2026-10-28T09:52:45.8168533Z npm notice package size: 97.2 kB
+publish	Publish	2026-10-28T09:52:45.8168948Z npm notice unpacked size: 427.0 kB
+publish	Publish	2026-10-28T09:52:45.8169431Z npm notice shasum: 714b8c1a9d93cc97341f7c092c34d6a96d00a6a4
+publish	Publish	2026-10-28T09:52:45.8170002Z npm notice integrity: sha512-Iyw7QhAqfMsdE[...]s5ex6CvcSu6MA==
+publish	Publish	2026-10-28T09:52:45.8170464Z npm notice total files: 78
+publish	Publish	2026-10-28T09:52:45.8170774Z npm notice
+publish	Publish	2026-10-28T09:52:46.8144722Z npm notice npm tokens that bypass 2FA are being restricted for account changes and direct publishing. Learn how to prepare: https://gh.io/npm-gat-bypass2fa-deprecation
+publish	Publish	2026-10-28T09:52:47.0681482Z npm notice Publishing to https://registry.npmjs.org/ with tag latest and public access
+publish	Publish	2026-10-28T09:52:51.6674349Z npm notice publish Signed provenance statement with source and build information from GitHub Actions
+publish	Publish	2026-10-28T09:52:51.6677315Z npm notice publish Provenance statement published to transparency log: https://search.sigstore.dev/?logIndex=3535823593
+publish	Publish	2026-10-28T09:52:53.9969916Z npm notice Your package is being processed and may take a few minutes to become available.
+publish	Publish	2026-10-28T09:52:53.9972915Z + @absolutejs/diagnostics@0.5.0
+publish	Publish	2026-10-28T09:52:54.0377591Z ##[endgroup]
+publish	Post Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1	﻿2026-10-28T09:52:54.0506334Z Post job cleanup.
+publish	Complete job	﻿2026-10-28T09:52:54.1880635Z Cleaning up orphan processes
