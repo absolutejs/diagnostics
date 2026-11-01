@@ -1,0 +1,30 @@
+{
+  "passed": true,
+  "rows": [
+    {
+      "mode": "deadline",
+      "exitCode": 137,
+      "observation": {
+        "startedAtMs": 8.452322,
+        "elapsedMs": 257.07099800000003,
+        "observations": 25,
+        "residentSamples": 0,
+        "exhausted": true,
+        "reason": "elapsed-budget"
+      }
+    },
+    {
+      "mode": "resident",
+      "exitCode": 137,
+      "observation": {
+        "startedAtMs": 267.643507,
+        "elapsedMs": 10.543949999999995,
+        "observations": 1,
+        "residentSamples": 1,
+        "peakResidentBytes": 29253632,
+        "exhausted": true,
+        "reason": "resident-budget"
+      }
+    }
+  ]
+}
