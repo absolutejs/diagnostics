@@ -1,0 +1,51 @@
+{
+  "passed": true,
+  "gpu": false,
+  "scope": "Synthetic memory observations; no browser resident-memory measurement",
+  "browserVersion": "149.0.7827.55",
+  "result": {
+    "deadline": {
+      "startedAtMs": 10.399999998509884,
+      "elapsedMs": 10.700000002980232,
+      "observations": 1,
+      "residentSamples": 1,
+      "peakResidentBytes": 10,
+      "exhausted": true,
+      "reason": "elapsed-budget"
+    },
+    "missing": {
+      "startedAtMs": 0,
+      "elapsedMs": 0,
+      "observations": 1,
+      "residentSamples": 0,
+      "exhausted": false
+    },
+    "boundary": {
+      "startedAtMs": 0,
+      "elapsedMs": 0,
+      "observations": 2,
+      "residentSamples": 1,
+      "peakResidentBytes": 16,
+      "exhausted": false
+    },
+    "exhausted": {
+      "startedAtMs": 0,
+      "elapsedMs": 0,
+      "observations": 3,
+      "residentSamples": 2,
+      "peakResidentBytes": 17,
+      "exhausted": true,
+      "reason": "resident-budget"
+    },
+    "latched": {
+      "startedAtMs": 0,
+      "elapsedMs": 1,
+      "observations": 4,
+      "residentSamples": 3,
+      "peakResidentBytes": 17,
+      "exhausted": true,
+      "reason": "resident-budget"
+    },
+    "frozen": true
+  }
+}
