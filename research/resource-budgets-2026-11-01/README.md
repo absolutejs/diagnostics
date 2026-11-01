@@ -1,0 +1,7 @@
+# Sampled resource policy for long diagnostic jobs
+
+The game now qualifies 336 physics cases in isolated child processes, retaining an observation after each one. Deadline/observed-resident-memory policy is reusable in builder tooling, asset processing and diagnostic workers, so it belongs in the real diagnostics run subpath rather than only in a local runner. The game-specific case matrix, Linux RSS read and owned-process cancellation remain host code.
+
+createDiagnosticResourceBudget captures its limits and monotonic clock, distinguishes missing from zero memory observations, tracks peak observed RSS, and latches the first exhausted limit. It installs no timers, I/O, process hooks or cancellation. Sampled evidence cannot establish unseen peaks or enforce an OS memory limit. The host retains those responsibilities.
+
+All 52 package tests / 376 assertions pass; the new resource/lifecycle subset has 14 tests / 84 assertions. Types, package manifest, build and built run/worker consumers pass. The worst-case terminal-reserve tests remain unchanged and passing. The active game matrix still uses its frozen prior diagnostics artifacts; this source has not been substituted into an ongoing run. Independent build and refreshed archive qualification follow this checkpoint. Keep this candidate off main because that branch automatically publishes version changes. Version remains the single deferred 0.6.0 release, not another immediate publication.

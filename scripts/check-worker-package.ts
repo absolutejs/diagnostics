@@ -22,7 +22,7 @@ assert.equal(count, 1);
 receiver.close();
 assert.equal(receiver.snapshot().closed, true);
 console.log(
-  "Published worker subpath redacts and delivers a bounded owned record",
+  "Built worker subpath redacts and delivers a bounded owned record",
 );
 
 const terminalRecords: string[] = [];

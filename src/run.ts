@@ -83,3 +83,98 @@ export function createDiagnosticRunLifecycle(now: () => number = Date.now) {
     },
   };
 }
+
+export type DiagnosticResourceSnapshot = Readonly<{
+  startedAtMs: number;
+  elapsedMs: number;
+  observations: number;
+  residentSamples: number;
+  peakResidentBytes?: number;
+  exhausted: boolean;
+  reason?: "elapsed-budget" | "resident-budget";
+}>;
+
+/** Sampled, host-neutral resource policy. The host supplies resident bytes and
+ * owns scheduling, termination and persistence. Missing samples do not prove
+ * memory safety; short peaks between observations cannot be detected here.
+ * Use a monotonic clock in milliseconds, never a wall-clock timestamp. */
+export function createDiagnosticResourceBudget(options: {
+  maxElapsedMs: number;
+  maxResidentBytes?: number;
+  now?: () => number;
+}) {
+  if (
+    !options ||
+    !Number.isFinite(options.maxElapsedMs) ||
+    options.maxElapsedMs <= 0 ||
+    (options.maxResidentBytes !== undefined &&
+      (!Number.isSafeInteger(options.maxResidentBytes) ||
+        options.maxResidentBytes <= 0)) ||
+    (options.now !== undefined && typeof options.now !== "function")
+  )
+    throw Error("Invalid diagnostic resource budget");
+  // Capture policy values: later caller mutation must not move a running limit.
+  const maxElapsedMs = options.maxElapsedMs,
+    maxResidentBytes = options.maxResidentBytes;
+  const now = options.now ?? (() => performance.now());
+  const startedAtMs = now();
+  if (!Number.isFinite(startedAtMs) || startedAtMs < 0)
+    throw Error("Invalid resource clock");
+  let lastAtMs = startedAtMs;
+  let state: DiagnosticResourceSnapshot = Object.freeze({
+    startedAtMs,
+    elapsedMs: 0,
+    observations: 0,
+    residentSamples: 0,
+    exhausted: false,
+  });
+  return {
+    snapshot: () => state,
+    observe(
+      sample: { residentBytes?: number } = {},
+    ): DiagnosticResourceSnapshot {
+      if (
+        !sample ||
+        (sample.residentBytes !== undefined &&
+          (!Number.isSafeInteger(sample.residentBytes) ||
+            sample.residentBytes < 0))
+      )
+        throw Error("Invalid resident memory sample");
+      const at = now();
+      if (!Number.isFinite(at) || at < lastAtMs)
+        throw Error("Nonmonotonic resource clock");
+      const elapsedMs = at - startedAtMs;
+      if (!Number.isFinite(elapsedMs))
+        throw Error("Unrepresentable resource duration");
+      const peakResidentBytes =
+        sample.residentBytes === undefined
+          ? state.peakResidentBytes
+          : Math.max(state.peakResidentBytes ?? 0, sample.residentBytes);
+      // First observed exhaustion is latched. If both limits first fail in the
+      // same observation, the elapsed deadline takes deterministic precedence.
+      const reason =
+        state.reason ??
+        (elapsedMs >= maxElapsedMs
+          ? "elapsed-budget"
+          : maxResidentBytes !== undefined &&
+              peakResidentBytes !== undefined &&
+              peakResidentBytes > maxResidentBytes
+            ? "resident-budget"
+            : undefined);
+      lastAtMs = at;
+      state = Object.freeze({
+        startedAtMs,
+        elapsedMs,
+        observations: Math.min(Number.MAX_SAFE_INTEGER, state.observations + 1),
+        residentSamples: Math.min(
+          Number.MAX_SAFE_INTEGER,
+          state.residentSamples + (sample.residentBytes === undefined ? 0 : 1),
+        ),
+        ...(peakResidentBytes === undefined ? {} : { peakResidentBytes }),
+        exhausted: reason !== undefined,
+        ...(reason === undefined ? {} : { reason }),
+      });
+      return state;
+    },
+  };
+}

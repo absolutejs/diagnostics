@@ -414,3 +414,26 @@ No terminal message is sent automatically. Abrupt termination, a failed callback
 or oversized/unserializable fields can still prevent delivery. Previously
 received host checkpoints remain the fallback. Without a reservation, ordinary
 message budgets retain their existing behavior.
+
+### Sampled resource budgets
+
+`@absolutejs/diagnostics/run` also exports `createDiagnosticResourceBudget`. Use it to share deadline and observed resident-memory policy across CLI jobs, workers and other diagnostic hosts. It installs no timer, reads no process information and never kills a process. The caller chooses when to sample, obtains memory evidence from its platform, persists the returned snapshot and owns cancellation.
+
+```ts
+import { createDiagnosticResourceBudget } from "@absolutejs/diagnostics/run";
+
+const budget = createDiagnosticResourceBudget({
+  maxElapsedMs: 45_000,
+  maxResidentBytes: 768 * 1024 * 1024,
+});
+// Inside the host's existing observation loop:
+const observation = budget.observe({ residentBytes: observedResidentBytes });
+if (observation.exhausted) {
+  persistDiagnostic(observation);
+  cancelOwnedJob();
+}
+```
+
+The default clock is `performance.now()`; an injected `now` must be monotonic milliseconds. The deadline is exhausted at `elapsedMs >= maxElapsedMs`; memory exceeds its budget only above the inclusive maximum. The first observed reason is retained even if memory subsequently drops. When both limits first fail together, the deadline takes precedence. Options are captured at creation and returned snapshots are immutable.
+
+Omit `residentBytes` when unavailable. Missing memory samples remain explicitly unknown (`residentSamples: 0`, absent `peakResidentBytes`); they are not treated as zero. A JS heap sample is not process resident memory. Sampled monitoring cannot catch peaks between observations and does not replace operating-system limits. Invalid observations or a backward/nonfinite clock throw without changing the last accepted snapshot. This policy does not infer clean process exit or source identity; use the existing run lifecycle for those separate facts.

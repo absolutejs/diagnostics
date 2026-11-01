@@ -1,0 +1,24 @@
+bun test v1.4.4+absolute.1 (38afee6c8)
+
+tests/resource-budget.test.ts:
+(pass) elapsed deadline is relative, exact and independent of a nonzero clock origin [0.76ms]
+(pass) missing memory remains unknown, while a zero resident sample is observed [0.33ms]
+(pass) resident maximum is inclusive and exhaustion persists after memory falls [0.13ms]
+(pass) simultaneous first failures have stable deadline precedence [0.05ms]
+(pass) policy and historical snapshots cannot be mutated through caller references [0.09ms]
+(pass) invalid samples and clocks leave the accepted snapshot unchanged [0.28ms]
+(pass) invalid policies reject before a budget can start [0.14ms]
+(pass) observation tracks memory even when no memory limit was requested [0.10ms]
+
+tests/run.test.ts:
+(pass) success stays provisional until an observed zero exit, with immutable snapshots [0.41ms]
+(pass) late exit %s / %s invalidates success [0.07ms]
+(pass) late exit %s / SIGTERM invalidates success [0.08ms]
+(pass) late exit %s / SIGINT invalidates success
+(pass) early zero exit is incomplete and failure/source invalidation cannot be erased [0.09ms]
+(pass) rejects invalid host evidence without mutating state and bounds error text [0.14ms]
+
+ 14 pass
+ 0 fail
+ 84 expect() calls
+Ran 14 tests across 2 files. [12.00ms]

@@ -17,5 +17,21 @@ assert.equal(
   "invalid",
 );
 console.log(
-  "Published run subpath: clean exit, late failure and source invalidation pass",
+  "Built run subpath: clean exit, late failure and source invalidation pass",
 );
+
+const { createDiagnosticResourceBudget } =
+  await import("@absolutejs/diagnostics/run");
+let time = 500;
+const budget = createDiagnosticResourceBudget({
+  maxElapsedMs: 10,
+  maxResidentBytes: 100,
+  now: () => time,
+});
+if (budget.observe().residentSamples !== 0)
+  throw Error("Unobserved memory was fabricated");
+time += 10;
+if (budget.observe({ residentBytes: 101 }).reason !== "elapsed-budget")
+  throw Error("Built resource budget contract failed");
+if (!Object.isFrozen(budget.snapshot())) throw Error("Mutable budget snapshot");
+console.log("Built resource-budget subpath passed");
