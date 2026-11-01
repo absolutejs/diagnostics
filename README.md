@@ -385,3 +385,32 @@ A checkpoint received by the host can outlive worker failure; a worker terminati
 can discard queued messages, so no final report is guaranteed. Browser/process or
 power loss still requires the host's durable storage policy. See the normative
 [HTML worker lifecycle](https://html.spec.whatwg.org/multipage/workers.html).
+
+### Reserved terminal worker checkpoints
+
+High-volume progress must not consume all capacity needed to explain a failure.
+Opt in when constructing the existing reporter:
+
+```ts
+const reporter = createWorkerDiagnosticReporter({
+  jobId,
+  terminalReserveBytes: 4096,
+  send: (frame) => self.postMessage(frame),
+});
+reporter.emit("physics.progress", boundedProgress);
+reporter.emitTerminal("physics.failed", compactFailure);
+```
+
+The reserve uses the existing channel byte and attempt limits; it does not raise
+them. One attempt and the requested UTF-8 bytes remain unavailable to ordinary
+records. A terminal payload must still fit the per-message and remaining total
+limits. Keep it within the requested reservation to guarantee capacity against
+ordinary saturation. The method closes before calling transport code, even if
+validation or transmission fails; retrying could duplicate a frame that was
+posted before its callback threw. Snapshot fields report terminal attempt/send
+status and ordinary-budget exhaustion. Receivers and wire frames are unchanged.
+
+No terminal message is sent automatically. Abrupt termination, a failed callback
+or oversized/unserializable fields can still prevent delivery. Previously
+received host checkpoints remain the fallback. Without a reservation, ordinary
+message budgets retain their existing behavior.

@@ -1,59 +1,73 @@
 {
-  "contract": 1,
-  "name": "@absolutejs/diagnostics",
-  "releases": [
-    {
-      "version": "0.5.0",
-      "date": "2026-10-28",
-      "changes": [
-        {
-          "kind": "added",
-          "summary": "Bounded redacted worker diagnostic frames with explicit job correlation",
-          "detail": "Opt-in reporter and receiver enforce message and byte budgets, reject stale or duplicate frames, preserve callback failure accounting and integrate with existing host persistence without creating workers, listeners or transport queues. Received checkpoints do not guarantee final crash reports.",
-          "symbols": [
-            "createWorkerDiagnosticReporter",
-            "createWorkerDiagnosticReceiver",
-            "WorkerDiagnosticFrame",
-            "WorkerDiagnosticRecord",
-            "WorkerDiagnosticLimits"
-          ]
-        }
-      ]
-    },
-    {
-      "version": "0.4.0",
-      "date": "2026-10-26",
-      "changes": [
-        {
-          "kind": "added",
-          "summary": "Track diagnostic assertion outcomes separately from process exit evidence through @absolutejs/diagnostics/run",
-          "detail": "A host-neutral lifecycle preserves failed and source-invalidated results, records explicit exit codes/signals, and marks successful assertions interrupted if the process subsequently fails. It installs no listeners or storage and returns immutable bounded snapshots.",
-          "symbols": [
-            "createDiagnosticRunLifecycle",
-            "DiagnosticRunStatus",
-            "DiagnosticRunSnapshot"
-          ]
-        }
-      ]
-    },
-    {
-      "changes": [
-        {
-          "detail": "Elysia 2.0.0-rc.0 renamed every lifecycle hook to its `on` form and removed setup/cleanup (now onStart/onStop). This package now builds and tests against Elysia 2.0.0-rc.0 and requires `elysia ^2.0.0-rc.0`, which also accepts later release candidates and 2.0.0. Its plugin's hooks are renamed to match.",
-          "kind": "breaking",
-          "migration": {
-            "instruction": "Upgrade `elysia` and every `@elysia/*` package to 2.0.0-rc.0 or later, then rename lifecycle hooks in your own server: request \u2192 onRequest, beforeHandle \u2192 onBeforeHandle, afterHandle \u2192 onAfterHandle, afterResponse \u2192 onAfterResponse, error \u2192 onError, parse \u2192 onParse, transform \u2192 onTransform; setup/cleanup \u2192 onStart/onStop. absolutejs/scripts codemods/elysia-rc-hooks.ts does the renames (run it before upgrading Elysia).",
-            "manual": true
-          },
-          "summary": "Requires Elysia 2.0.0-rc.0",
-          "symbols": [
-            "diagnosticCorrelationPlugin",
-            "diagnosticsPlugin"
-          ]
-        }
-      ],
-      "date": "2026-10-22",
-      "version": "0.3.0"
-    }
-  ]
+	"contract": 1,
+	"name": "@absolutejs/diagnostics",
+	"releases": [
+		{
+			"changes": [
+				{
+					"detail": "Opt-in terminalReserveBytes preserves one attempt and UTF-8 payload capacity without increasing channel limits. emitTerminal closes before callbacks, preserves redaction, and never retries an ambiguous send. A caller must explicitly supply a compact final record; abrupt worker termination can still prevent delivery.",
+					"kind": "added",
+					"summary": "Reserve bounded worker diagnostic capacity for a one-shot terminal checkpoint",
+					"symbols": [
+						"createWorkerDiagnosticReporter"
+					]
+				}
+			],
+			"date": "2026-11-01",
+			"version": "0.6.0"
+		},
+		{
+			"changes": [
+				{
+					"detail": "Opt-in reporter and receiver enforce message and byte budgets, reject stale or duplicate frames, preserve callback failure accounting and integrate with existing host persistence without creating workers, listeners or transport queues. Received checkpoints do not guarantee final crash reports.",
+					"kind": "added",
+					"summary": "Bounded redacted worker diagnostic frames with explicit job correlation",
+					"symbols": [
+						"createWorkerDiagnosticReporter",
+						"createWorkerDiagnosticReceiver",
+						"WorkerDiagnosticFrame",
+						"WorkerDiagnosticRecord",
+						"WorkerDiagnosticLimits"
+					]
+				}
+			],
+			"date": "2026-10-28",
+			"version": "0.5.0"
+		},
+		{
+			"changes": [
+				{
+					"detail": "A host-neutral lifecycle preserves failed and source-invalidated results, records explicit exit codes/signals, and marks successful assertions interrupted if the process subsequently fails. It installs no listeners or storage and returns immutable bounded snapshots.",
+					"kind": "added",
+					"summary": "Track diagnostic assertion outcomes separately from process exit evidence through @absolutejs/diagnostics/run",
+					"symbols": [
+						"createDiagnosticRunLifecycle",
+						"DiagnosticRunStatus",
+						"DiagnosticRunSnapshot"
+					]
+				}
+			],
+			"date": "2026-10-26",
+			"version": "0.4.0"
+		},
+		{
+			"changes": [
+				{
+					"detail": "Elysia 2.0.0-rc.0 renamed every lifecycle hook to its `on` form and removed setup/cleanup (now onStart/onStop). This package now builds and tests against Elysia 2.0.0-rc.0 and requires `elysia ^2.0.0-rc.0`, which also accepts later release candidates and 2.0.0. Its plugin's hooks are renamed to match.",
+					"kind": "breaking",
+					"migration": {
+						"instruction": "Upgrade `elysia` and every `@elysia/*` package to 2.0.0-rc.0 or later, then rename lifecycle hooks in your own server: request → onRequest, beforeHandle → onBeforeHandle, afterHandle → onAfterHandle, afterResponse → onAfterResponse, error → onError, parse → onParse, transform → onTransform; setup/cleanup → onStart/onStop. absolutejs/scripts codemods/elysia-rc-hooks.ts does the renames (run it before upgrading Elysia).",
+						"manual": true
+					},
+					"summary": "Requires Elysia 2.0.0-rc.0",
+					"symbols": [
+						"diagnosticCorrelationPlugin",
+						"diagnosticsPlugin"
+					]
+				}
+			],
+			"date": "2026-10-22",
+			"version": "0.3.0"
+		}
+	]
 }

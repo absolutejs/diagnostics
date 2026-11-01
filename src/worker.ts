@@ -52,6 +52,11 @@ export function createWorkerDiagnosticReporter(
   options: WorkerDiagnosticLimits & {
     jobId: string;
     send: (frame: WorkerDiagnosticFrame) => void;
+    /** Reserve one attempt and this many UTF-8 bytes for emitTerminal().
+     * Default zero preserves the existing ordinary-message limits. The caller
+     * must explicitly send a compact terminal record; worker termination can
+     * still prevent delivery. Must not exceed either byte limit. */
+    terminalReserveBytes?: number;
   },
 ) {
   const jobId = options.jobId;
@@ -59,52 +64,87 @@ export function createWorkerDiagnosticReporter(
   if (typeof options.send !== "function")
     throw new TypeError("send is required");
   const send = options.send;
+  const reserve = options.terminalReserveBytes ?? 0;
+  if (
+    !Number.isSafeInteger(reserve) ||
+    reserve < 0 ||
+    reserve > limits.maxMessageBytes ||
+    reserve > limits.maxTotalBytes
+  )
+    throw new RangeError("Invalid terminalReserveBytes");
+  const ordinaryMessages = limits.maxMessages - (reserve > 0 ? 1 : 0);
+  const ordinaryBytes = limits.maxTotalBytes - reserve;
+  let terminalAttempted = false,
+    terminalSent = false;
   let attempts = 0,
     sent = 0,
     dropped = 0,
     errors = 0,
     sentBytes = 0,
     closed = false;
-  return {
-    emit(event: string, fields: Record<string, unknown>): boolean {
-      if (closed || attempts >= limits.maxMessages) return false;
-      const sequence = ++attempts;
-      try {
-        if (!identifier(event) || !object(fields)) {
-          dropped++;
-          return false;
-        }
-        const json = JSON.stringify(redactValue(fields));
-        if (json.length > limits.maxMessageBytes) {
-          dropped++;
-          return false;
-        }
-        const size = bytes(json);
-        if (
-          size > limits.maxMessageBytes ||
-          sentBytes + size > limits.maxTotalBytes
-        ) {
-          dropped++;
-          return false;
-        }
-        // Count attempted transmission even if the callback throws after posting.
-        sentBytes += size;
-        send(
-          Object.freeze({
-            channel: CHANNEL,
-            jobId,
-            sequence,
-            event,
-            json,
-          }),
-        );
-        sent++;
-        return true;
-      } catch {
-        errors++;
+  const emit = (
+    event: string,
+    fields: Record<string, unknown>,
+    terminal: boolean,
+  ): boolean => {
+    if (
+      closed ||
+      attempts >= (terminal ? limits.maxMessages : ordinaryMessages)
+    )
+      return false;
+    // Close before invoking user code so a terminal send cannot recursively
+    // append records or retry after a callback that may have already posted.
+    if (terminal) {
+      closed = true;
+      terminalAttempted = true;
+    }
+    const sequence = ++attempts;
+    try {
+      if (!identifier(event) || !object(fields)) {
         dropped++;
         return false;
       }
+      const json = JSON.stringify(redactValue(fields));
+      if (json.length > limits.maxMessageBytes) {
+        dropped++;
+        return false;
+      }
+      const size = bytes(json);
+      if (
+        size > limits.maxMessageBytes ||
+        sentBytes + size > (terminal ? limits.maxTotalBytes : ordinaryBytes)
+      ) {
+        dropped++;
+        return false;
+      }
+      // Count attempted transmission even if the callback throws after posting.
+      sentBytes += size;
+      send(
+        Object.freeze({
+          channel: CHANNEL,
+          jobId,
+          sequence,
+          event,
+          json,
+        }),
+      );
+      sent++;
+      if (terminal) terminalSent = true;
+      return true;
+    } catch {
+      errors++;
+      dropped++;
+      return false;
+    }
+  };
+  return {
+    emit(event: string, fields: Record<string, unknown>): boolean {
+      return emit(event, fields, false);
+    },
+    /** One-shot final record. Closes the reporter even on validation/send
+     * failure; retries could duplicate a frame posted before a callback threw. */
+    emitTerminal(event: string, fields: Record<string, unknown>): boolean {
+      return emit(event, fields, true);
     },
     close() {
       closed = true;
@@ -117,6 +157,11 @@ export function createWorkerDiagnosticReporter(
         errors,
         sentBytes,
         closed,
+        terminalAttempted,
+        terminalSent,
+        terminalReserveBytes: reserve,
+        ordinaryExhausted:
+          attempts >= ordinaryMessages || sentBytes >= ordinaryBytes,
         exhausted:
           attempts >= limits.maxMessages || sentBytes >= limits.maxTotalBytes,
       };
