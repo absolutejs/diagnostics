@@ -24,3 +24,25 @@ assert.equal(receiver.snapshot().closed, true);
 console.log(
   "Published worker subpath redacts and delivers a bounded owned record",
 );
+
+const terminalRecords: string[] = [];
+const terminalReceiver = createWorkerDiagnosticReceiver({
+  jobId: "terminal-consumer",
+  maxMessages: 2,
+  onRecord: (r) => terminalRecords.push(r.event),
+});
+const terminalReporter = createWorkerDiagnosticReporter({
+  jobId: "terminal-consumer",
+  maxMessages: 2,
+  terminalReserveBytes: 64,
+  send: (f) => assert.equal(terminalReceiver.receive(f), "accepted"),
+});
+assert.equal(terminalReporter.emit("progress", {}), true);
+assert.equal(terminalReporter.emit("overflow", {}), false);
+assert.equal(terminalReporter.emitTerminal("failed", { step: 42 }), true);
+assert.deepEqual(terminalRecords, ["progress", "failed"]);
+assert.equal(terminalReporter.snapshot().terminalSent, true);
+assert.equal(terminalReporter.emitTerminal("retry", {}), false);
+console.log(
+  "Built worker subpath preserves a terminal record after ordinary saturation",
+);

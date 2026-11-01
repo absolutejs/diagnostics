@@ -1,0 +1,59 @@
+{
+  "gpu": false,
+  "browserVersion": "149.0.7827.55",
+  "executablePath": "/home/alexkahn/.cache/ms-playwright/chromium_headless_shell-1228/chrome-headless-shell-linux64/chrome-headless-shell",
+  "error": "Uncaught Error: intentional-worker-failure",
+  "records": [
+    {
+      "jobId": "crash-probe",
+      "sequence": 1,
+      "event": "progress",
+      "fields": {
+        "payload": "界界界界界界界界界界界界界界界界界界界界",
+        "step": 0
+      }
+    },
+    {
+      "jobId": "crash-probe",
+      "sequence": 2,
+      "event": "progress",
+      "fields": {
+        "payload": "界界界界界界界界界界界界界界界界界界界界",
+        "step": 1
+      }
+    },
+    {
+      "jobId": "crash-probe",
+      "sequence": 8,
+      "event": "terminal",
+      "fields": {
+        "steps": 42,
+        "password": "[REDACTED]"
+      }
+    }
+  ],
+  "reporter": {
+    "attempts": 8,
+    "sent": 3,
+    "dropped": 5,
+    "errors": 0,
+    "sentBytes": 202,
+    "closed": true,
+    "terminalAttempted": true,
+    "terminalSent": true,
+    "terminalReserveBytes": 64,
+    "ordinaryExhausted": true,
+    "exhausted": true
+  },
+  "receiver": {
+    "attempts": 3,
+    "accepted": 3,
+    "rejected": 0,
+    "errors": 0,
+    "receivedBytes": 202,
+    "lastSequence": 8,
+    "missingSequences": 5,
+    "closed": true,
+    "exhausted": false
+  }
+}

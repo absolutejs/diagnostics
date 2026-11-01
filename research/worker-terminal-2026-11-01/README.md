@@ -1,0 +1,5 @@
+Queued diagnostics0.6.0: reserved terminal worker capacity. All44 package tests/324 assertions pass, type checking and package manifest validation pass, built-subpath consumers pass, and the GPU-disabled browser retains a redacted terminal frame after ordinary message/byte saturation and a subsequently acknowledged worker exception. The default wire format and ordinary limits remain unchanged unless the caller opts in.
+
+The real game exposed the need: repeated profiles left its last detailed record at18s while the actual attempt rejected at20s. With a4096-byte reserve and compact physical decision, the final drop.attempt record reaches the host and its copied inspection data without raising the channel byte limit. Game/browser evidence is recorded separately.
+
+Publication is deliberately deferred while the user is away. This repository publishes version changes when merged to main; keep this release on feat/worker-terminal-reserve until publication is resumed. Do not request npm authentication or merge to main merely to back up this branch. Independent-build and archive checks are still pending.
